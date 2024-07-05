@@ -3,3 +3,15 @@
   Author: Samuel Lau
   Version: 1.0
 */
+
+h1 {
+  color: #0000FF;
+}
+
+h2 {
+  color: rgb(72,0,72);
+}
+
+p {
+  color: rgb(172,10,72);
+}
