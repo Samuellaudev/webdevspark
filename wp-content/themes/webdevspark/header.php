@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- outputs the language attributes for the HTML tag based on the language settings configured in WordPress -->
+<html <?php language_attributes() ?>>
 
 <head>
+  <!-- Set the character set to match the WordPress installation -->
+  <meta charset="<?php bloginfo('charset') ?>">
+  <!-- Set the viewport for responsive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <?php wp_head(); ?>
 </head>
 
-<body>
+<!-- adds various CSS classes to the body element based on the context of the current page.  -->
+
+<body <?php body_class() ?>>
   <header class="site-header">
     <div class="container">
       <h1 class="school-logo-text float-left">
