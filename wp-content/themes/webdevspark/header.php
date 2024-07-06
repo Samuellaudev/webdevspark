@@ -35,7 +35,7 @@
             <li <?php if (is_page('campuses') || wp_get_post_parent_id(get_the_ID()) === 5) echo 'class="current-menu-item"' ?>>
               <a href="<?= site_url('/campuses') ?>">Campuses</a>
             </li>
-            <li <?php if (is_page('blog') || wp_get_post_parent_id(get_the_ID()) === 5) echo 'class="current-menu-item"' ?>>
+            <li <?php if (get_post_type() === 'post') echo 'class="current-menu-item"' ?>>
               <a href="<?= site_url('/blog') ?>">Blog</a>
             </li>
           </ul>
