@@ -29,8 +29,8 @@
             <li <?php if (is_page('programs') || wp_get_post_parent_id(get_the_ID()) === 5) echo 'class="current-menu-item"' ?>>
               <a href="<?= site_url('/programs') ?>">Programs</a>
             </li>
-            <li <?php if (is_page('events') || wp_get_post_parent_id(get_the_ID()) === 5) echo 'class="current-menu-item"' ?>>
-              <a href="<?= site_url('/events') ?>">Events</a>
+            <li <?php if (get_post_type() === 'event') echo 'class="current-menu-item"' ?>>
+              <a href="<?php echo get_post_type_archive_link('event') ?>">Events</a>
             </li>
             <li <?php if (is_page('campuses') || wp_get_post_parent_id(get_the_ID()) === 5) echo 'class="current-menu-item"' ?>>
               <a href="<?= site_url('/campuses') ?>">Campuses</a>
