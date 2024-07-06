@@ -4,6 +4,8 @@ function university_post_types() {
   register_post_type('event', [
     'public' => true,
     'show_in_rest' => true,
+    'has_archive' => true,
+    'rewrite' => array('slug' => 'events'),
     'labels' => [
       'name' => 'Events',
       'add_new' => 'Add New Event',
