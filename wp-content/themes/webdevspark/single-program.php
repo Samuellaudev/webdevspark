@@ -33,6 +33,43 @@ while (have_posts()) {
     </div>
 
     <?php
+    // Query related professors
+    $relatedProfessors = new WP_Query(([
+      'posts_per_page' => -1,
+      'post_type' => 'professor',
+      'orderby' => 'title',
+      'order' => 'ASC',
+      'meta_query' => [
+        [
+          'key' => 'related_programs',
+          'compare' => 'LIKE',
+          'value' => get_the_ID()
+        ]
+      ]
+    ]))
+    ?>
+
+    <?php if ($relatedProfessors->have_posts()) { ?>
+      <hr class="section-break">
+      <h3 class="headline headline--small-plus">
+        <?php get_the_title() ?> Professors
+      </h3>
+
+      <ul class="link-list min-list">
+        <?php while ($relatedProfessors->have_posts()) {
+          $relatedProfessors->the_post(); ?>
+          <li>
+            <a href="<?php the_permalink() ?>">
+              <?php the_title(); ?>
+            </a>
+          </li>
+        <?php } ?>
+      </ul>
+      <?php wp_reset_postdata(); ?>
+    <?php } ?>
+
+    <?php
+    // Query upcoming events related to the current program
     $today = date('Ymd');
     $homepageEvents = new WP_Query(array(
       'posts_per_page' => 2,
@@ -62,8 +99,7 @@ while (have_posts()) {
         Upcoming <?php get_the_title() ?> Events
       </h3>
 
-      <?php
-      while ($homepageEvents->have_posts()) {
+      <?php while ($homepageEvents->have_posts()) {
         $homepageEvents->the_post(); ?>
 
         <div class="event-summary">
@@ -96,7 +132,6 @@ while (have_posts()) {
       <?php }
       wp_reset_postdata();
       ?>
-
     <?php } ?>
   </div>
 
