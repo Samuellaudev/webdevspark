@@ -18,8 +18,10 @@
       <h1 class="school-logo-text float-left">
         <a href="<?php echo site_url() ?>"><strong>Fictional</strong> University</a>
       </h1>
+      <!-- mobile menu -->
       <span class="js-search-trigger site-header__search-trigger"><i class="fa fa-search" aria-hidden="true"></i></span>
       <i class="site-header__menu-trigger fa fa-bars" aria-hidden="true"></i>
+      <!-- desktop menu -->
       <div class="site-header__menu group">
         <nav class="main-navigation">
           <ul>
@@ -48,3 +50,13 @@
       </div>
     </div>
   </header>
+
+  <div class="search-overlay">
+    <div class="search-overlay__top">
+      <div class="container">
+        <i class="fa fa-search search-overlay__icon" aria-hidden="true"></i>
+        <input type="text" class="search-term" id="search-term" placeholder="What are you looking for?">
+        <i class="fa fa-window-close search-overlay__close" aria-hidden="true"></i>
+      </div>
+    </div>
+  </div>
