@@ -1,5 +1,5 @@
 <?php
-get_header();
+get_template_part('template-parts/header');
 
 $args = [
   'title' => 'Welcome to our blog!',
@@ -29,4 +29,4 @@ pageBanner($args);
   <?php echo paginate_links(); ?>
 </div>
 
-<?php get_footer(); ?>
+<?php get_template_part('template-parts/footer'); ?>

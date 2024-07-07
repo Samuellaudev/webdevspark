@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php get_template_part('template-parts/header'); ?>
 
 <div class="page-banner">
   <div class="page-banner__bg-image" style="background-image: url(<?= get_theme_file_uri('images/ocean.jpg') ?>)"></div>
@@ -35,4 +35,4 @@
 
 </div>
 
-<?php get_footer(); ?>
+<?php get_template_part('template-parts/footer'); ?>

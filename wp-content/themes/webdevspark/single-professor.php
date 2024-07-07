@@ -1,5 +1,5 @@
 <?php
-get_header();
+get_template_part('template-parts/header');
 
 pageBanner();
 
@@ -39,5 +39,5 @@ while (have_posts()) {
 <?php
 }
 
-get_footer();
+get_template_part('template-parts/footer');
 ?>

@@ -1,5 +1,5 @@
 <?php
-get_header();
+get_template_part('template-parts/header');
 
 $args = [
   'subtitle' => 'DONT FORGET TO REPLACE ME LATER.'
@@ -47,5 +47,5 @@ while (have_posts()) {
 
 <?php }
 
-get_footer();
+get_template_part('template-parts/footer');
 ?>

@@ -1,5 +1,5 @@
 <?php
-get_header();
+get_template_part('template-parts/header');
 
 $args = [
   'title' => 'All Programs',
@@ -22,4 +22,4 @@ pageBanner($args);
   </ul>
 </div>
 
-<?php get_footer(); ?>
+<?php get_template_part('template-parts/footer'); ?>
