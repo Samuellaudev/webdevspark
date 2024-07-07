@@ -42,7 +42,7 @@ function university_post_types() {
     'public' => true,
     'show_in_rest' => true,
     'rewrite' => array('slug' => 'professors'),
-    'supports' => array('title', 'editor'),
+    'supports' => array('title', 'editor', 'thumbnail'),
     'labels' => array(
       'name' => 'Professors',
       'add_new' => 'Add New Professor',
