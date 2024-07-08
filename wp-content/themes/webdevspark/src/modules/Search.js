@@ -4,10 +4,18 @@ class Search {
     this.openButtons = document.querySelectorAll(".js-search-trigger");
     this.closeButton = document.querySelector(".search-overlay .search-overlay__close");
     this.searchOverlay = document.querySelector(".search-overlay");
-    this.events();
 
     // Related to keypress events
     this.isOverlayOpen = false;
+
+    // Related to typing events
+    this.searchField = document.querySelector('#search-term');
+    this.typingTimer = null;
+    this.resultsDiv = document.querySelector('#search-overlay__results');
+    this.isSpinnerVisible = false;
+    this.previousValue;
+
+    this.events();
   }
 
   // 2. events
@@ -17,6 +25,9 @@ class Search {
     })
     this.closeButton.addEventListener("click", () => this.closeOverlay());
     document.addEventListener('keydown', e => this.keyPressDispatcher(e))
+    if (this.searchField) {
+      this.searchField.addEventListener('keyup', () => this.typingLogic());
+    }
   }
 
   // 3. methods
@@ -36,12 +47,55 @@ class Search {
     if (keyCode === 83 && !this.isOverlayOpen && document.activeElement.tagName !== "INPUT" && document.activeElement.tagName !== "TEXTAREA") {
       this.openOverlay();
       this.isOverlayOpen = true;
+
+      setTimeout(() => this.focusSearchField(), 300);
     }
 
     if (keyCode === 27 && this.isOverlayOpen) {
       this.closeOverlay();
       this.isOverlayOpen = false;
+      this.searchField.value = '';
+      this.resultsDiv.innerHTML = '';
     }
+  }
+
+  focusSearchField() {
+    if (this.isOverlayOpen && this.searchField) {
+      this.searchField.focus();
+    }
+  }
+
+  typingLogic() {
+    if (this.searchField.value !== this.previousValue) {
+      clearTimeout(this.typingTimer);
+
+      if (this.searchField.value) {
+        if (!this.isSpinnerVisible) {
+          this.showSpinner();
+        }
+
+        this.typingTimer = setTimeout(() => this.getResults(), 500);
+      } else {
+        this.clearResults();
+      }
+    }
+
+    this.previousValue = this.searchField.value;
+  }
+
+  showSpinner() {
+    this.resultsDiv.innerHTML = '<div class="spinner-loader"></div>';
+    this.isSpinnerVisible = true;
+  }
+
+  clearResults() {
+    this.resultsDiv.innerHTML = '';
+    this.isSpinnerVisible = false;
+  }
+
+  getResults() {
+    this.resultsDiv.innerHTML = 'testing - resultsDiv'
+    this.isSpinnerVisible = false;
   }
 }
 
