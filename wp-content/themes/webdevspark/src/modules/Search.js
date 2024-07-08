@@ -118,38 +118,49 @@ class Search {
 
   displayResults(results) {
     return `
-        <ul class="link-list min-list">
-          ${ results.map(item => `
-            <li>
-              <a href="${ item.link }">${ item.title.rendered }</a>
-              ${ item.type === 'post' ? `by ${ item.authorName}` : ''}
-            </li>
-          `).join('') }
-        </ul>
-      `
+      <ul class="link-list min-list">
+        ${ results.map(item => `
+          <li>
+            <a href="${ item.permalink }">${ item.title }</a>
+            ${ item.postType === 'post' ? `by ${ item.authorName }` : '' }
+          </li>
+        `).join('') }
+      </ul>
+    `
   }
 
   async getResults() {
     const searchValue = this.searchField.value.trim();
-    const pagesUrl = `${ siteConfig.root_url }/wp-json/wp/v2/pages?search=${ searchValue }`;
-    const postsUrl = `${ siteConfig.root_url }/wp-json/wp/v2/posts?search=${ searchValue }`;
+    const url =`${siteConfig.root_url}/wp-json/university/v1/search?term=${searchValue}`;
 
     try {
-      const [pagesResponse, postsResponse] = await Promise.all([
-        axios.get(pagesUrl),
-        axios.get(postsUrl),
-      ])
-
-      const pages = pagesResponse.data
-      const posts = postsResponse.data
-      const combinedResults = [...pages, ...posts];
+      const response = await axios.get(url)
+      const results = response.data
+      const { generalInfo, programs, professors, events } = results
 
       this.resultsDiv.innerHTML = `
-      <h2 class="search-overlay__section-title">General Information</h2>
-      ${ combinedResults.length ? this.displayResults(combinedResults) : '<p>No results found</p>' }
+      <div class='row'>
+        <div class='one-third'>
+          <h2 class="search-overlay__section-title">General Information</h2>
+          ${ generalInfo.length ? this.displayResults(generalInfo) : '<p>No general information matches that search.</p>' }
+        </div>
+        <div class='one-third'>
+          <h2 class="search-overlay__section-title">Programs</h2>
+          ${ programs.length ? this.displayResults(programs) : '<p>No programs matches that search.</p>' }
+        </div>
+        <div class='one-third'>
+          <h2 class="search-overlay__section-title">Professors</h2>
+          ${ professors.length ? this.displayResults(professors) : '<p>No professors matches that search.</p>' }
+        </div>
+        <div class='one-third'>
+          <h2 class="search-overlay__section-title">Events</h2>
+          ${ events.length ? this.displayResults(events) : '<p>No events matches that search.</p>' }
+        </div>
+      </div>
     `;
     } catch (error) {
       console.log(error);
+      this.resultsDiv.innerHTML = '<p>Something went wrong. Please try again later.</p>';
     }
   }
 }

@@ -30,7 +30,9 @@ function universitySearchResults($data) {
 
     $result_item = [
       'title' => get_the_title($post),
-      'permalink' => get_permalink($post)
+      'permalink' => get_permalink($post),
+      'postType' => $postType,
+      'authorName' => get_the_author(),
     ];
 
     switch ($postType) {
