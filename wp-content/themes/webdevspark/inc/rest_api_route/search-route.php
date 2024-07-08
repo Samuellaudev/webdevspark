@@ -7,10 +7,11 @@ function universityRegisterSearch() {
   ]);
 }
 
-function universitySearchResults() {
+function universitySearchResults($data) {
   $professors = get_posts([
     'post_type' => 'professor',
-    'posts_per_page' => -1
+    'posts_per_page' => -1,
+    's' => sanitize_text_field($data['term'])
   ]);
 
   $professorResults = [];
