@@ -97,12 +97,22 @@ class Search {
 
   async getResults() {
     const searchValue = this.searchField.value;
-    const url = `http://webdevspark.local/wp-json/wp/v2/posts?search=${searchValue}`;
-    
+    const url = `http://webdevspark.local/wp-json/wp/v2/posts?search=${ searchValue }`;
+
     try {
       const response = await axios.get(url);
-      const results = response.data;
-      console.log(results);
+      const posts = response.data;
+
+      this.resultsDiv.innerHTML = `
+      <h2 class="search-overlay__section-title">General Information</h2>
+      <ul class='link-list min-list'>
+      ${ posts.map(post => `
+        <li>
+          <a href='${ post.link }'>${ post.title.rendered }</a>
+        </li>`
+      ).join('') }
+      </ul>
+      `
     } catch (error) {
       console.log(error);
     }
