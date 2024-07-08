@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 class Search {
   // 1. Describe and initiate our object
   constructor() {
@@ -93,9 +95,17 @@ class Search {
     this.isSpinnerVisible = false;
   }
 
-  getResults() {
-    this.resultsDiv.innerHTML = 'testing - resultsDiv'
-    this.isSpinnerVisible = false;
+  async getResults() {
+    const searchValue = this.searchField.value;
+    const url = `http://webdevspark.local/wp-json/wp/v2/posts?search=${searchValue}`;
+    
+    try {
+      const response = await axios.get(url);
+      const results = response.data;
+      console.log(results);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
