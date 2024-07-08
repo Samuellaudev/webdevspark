@@ -116,12 +116,12 @@ class Search {
     this.isSpinnerVisible = false;
   }
 
-  displayPosts(posts) {
+  displayResults(results) {
     return `
         <ul class="link-list min-list">
-          ${ posts.map(post => `
+          ${ results.map(item => `
             <li>
-              <a href="${ post.link }">${ post.title.rendered }</a>
+              <a href="${ item.link }">${ item.title.rendered }</a>
             </li>
           `).join('') }
         </ul>
@@ -129,16 +129,23 @@ class Search {
   }
 
   async getResults() {
-    const searchValue = this.searchField.value;
-    const url = `${ siteConfig.root_url }/wp-json/wp/v2/posts?search=${ searchValue }`;
+    const searchValue = this.searchField.value.trim();
+    const pagesUrl = `${ siteConfig.root_url }/wp-json/wp/v2/pages?search=${ searchValue }`;
+    const postsUrl = `${ siteConfig.root_url }/wp-json/wp/v2/posts?search=${ searchValue }`;
 
     try {
-      const response = await axios.get(url);
-      const posts = response.data;
+      const [pagesResponse, postsResponse] = await Promise.all([
+        axios.get(pagesUrl),
+        axios.get(postsUrl),
+      ])
+
+      const pages = pagesResponse.data
+      const posts = postsResponse.data
+      const combinedResults = [...pages, ...posts];
 
       this.resultsDiv.innerHTML = `
       <h2 class="search-overlay__section-title">General Information</h2>
-      ${ posts.length ? this.displayPosts(posts) : '<p>No results found</p>' }
+      ${ combinedResults.length ? this.displayResults(combinedResults) : '<p>No results found</p>' }
     `;
     } catch (error) {
       console.log(error);
