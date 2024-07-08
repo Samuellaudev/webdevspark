@@ -2,7 +2,7 @@
 
 function universityRegisterSearch() {
   register_rest_route('university/v1', 'search', [
-    'method' => 'GET',
+    'methods' => 'GET',
     'callback' => 'universitySearchResults'
   ]);
 }
@@ -34,6 +34,25 @@ function universitySearchResults($data) {
       'postType' => $postType,
       'authorName' => get_the_author(),
     ];
+
+    if ($postType === 'professor') {
+      $result_item['image'] = get_the_post_thumbnail_url($post, 'professorLandscape');
+    };
+
+    if ($postType === 'event') {
+      $eventDate = new DateTime(get_field('event_date'));
+      $description = null;
+
+      if (has_excerpt($post)) {
+        $description = get_the_excerpt($post);
+      } else {
+        $description = wp_trim_words(get_the_content($post), 20);
+      }
+
+      $result_item['month'] = $eventDate->format('M');
+      $result_item['date'] = $eventDate->format('d ');
+      $result_item['description'] = $description;
+    };
 
     switch ($postType) {
       case 'post':

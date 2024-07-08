@@ -126,6 +126,41 @@ class Search {
           </li>
         `).join('') }
       </ul>
+    `}
+
+  displayProfessors(professors) { 
+    return `
+      <ul class='professor-cards'>
+        ${ professors.map(professor => `
+          <li class="professor-card__list-item">
+            <a class="professor-card" href="${professor.permalink}">
+              <img class="professor-card__image" src="${professor.image}" alt="">
+              <span class="professor-card__name">${professor.title}</span>
+            </a>
+          </li>
+        `).join('') }
+      </ul>
+    `}
+
+  displayEvents(events) {
+    return `
+      ${ events.map(event => `
+        <div class="event-summary">
+          <a class="event-summary__date event-summary__date--beige t-center" href="${event.permalink}">
+            <span class="event-summary__month">${event.month}</span>
+            <span class="event-summary__day">${event.date}</span>
+          </a>
+          <div class="event-summary__content">
+            <h5 class="event-summary__title headline headline--tiny">
+              <a href="${event.permalink}>">${event.title}</a>
+            </h5>
+            <p>
+              ${event.description}
+              <a href="${event.permalink}" class="nu gray">Read more</a>
+            </p>
+          </div>
+        </div>
+      `)}
     `
   }
 
@@ -150,11 +185,11 @@ class Search {
         </div>
         <div class='one-third'>
           <h2 class="search-overlay__section-title">Professors</h2>
-          ${ professors.length ? this.displayResults(professors) : '<p>No professors matches that search.</p>' }
+          ${ professors.length ? this.displayProfessors(professors) : '<p>No professors matches that search.</p>' }
         </div>
         <div class='one-third'>
           <h2 class="search-overlay__section-title">Events</h2>
-          ${ events.length ? this.displayResults(events) : '<p>No events matches that search.</p>' }
+          ${ events.length ? this.displayEvents(events) : '<p>No events matches that search.</p>' }
         </div>
       </div>
     `;
