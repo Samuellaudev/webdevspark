@@ -95,9 +95,21 @@ class Search {
     this.isSpinnerVisible = false;
   }
 
+  displayPosts(posts) {
+    return `
+        <ul class="link-list min-list">
+          ${ posts.map(post => `
+            <li>
+              <a href="${ post.link }">${ post.title.rendered }</a>
+            </li>
+          `).join('') }
+        </ul>
+      `
+  }
+
   async getResults() {
     const searchValue = this.searchField.value;
-    const url = `http://webdevspark.local/wp-json/wp/v2/posts?search=${ searchValue }`;
+    const url = `${siteConfig.root_url}/wp-json/wp/v2/posts?search=${ searchValue }`;
 
     try {
       const response = await axios.get(url);
@@ -105,14 +117,8 @@ class Search {
 
       this.resultsDiv.innerHTML = `
       <h2 class="search-overlay__section-title">General Information</h2>
-      <ul class='link-list min-list'>
-      ${ posts.map(post => `
-        <li>
-          <a href='${ post.link }'>${ post.title.rendered }</a>
-        </li>`
-      ).join('') }
-      </ul>
-      `
+      ${ posts.length ? this.displayPosts(posts) : '<p>No results found</p>' }
+    `;
     } catch (error) {
       console.log(error);
     }
