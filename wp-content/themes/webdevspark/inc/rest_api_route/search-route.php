@@ -8,22 +8,51 @@ function universityRegisterSearch() {
 }
 
 function universitySearchResults($data) {
-  $professors = get_posts([
-    'post_type' => 'professor',
+  $searchTerm = sanitize_text_field($data['term']);
+
+  $mainQuery = get_posts([
+    'post_type' => ['post', 'page', 'professor', 'program', 'event'],
     'posts_per_page' => -1,
-    's' => sanitize_text_field($data['term'])
+    's' => $searchTerm
   ]);
 
-  $professorResults = [];
+  $results = [
+    'generalInfo' => [],
+    'professors' => [],
+    'programs' => [],
+    'events' => [],
+  ];
 
-  foreach ($professors as $professor) {
-    $professorResults[] = [
-      'title' => $professor->post_title,
-      'permalink' => get_permalink($professor),
+  foreach ($mainQuery as $post) {
+    setup_postdata($post);
+
+    $postType = get_post_type($post);
+
+    $result_item = [
+      'title' => get_the_title($post),
+      'permalink' => get_permalink($post)
     ];
-  };
 
-  return $professorResults;
+    switch ($postType) {
+      case 'post':
+      case 'page':
+        $results['generalInfo'][] = $result_item;
+        break;
+      case 'professor':
+        $results['professors'][] = $result_item;
+        break;
+      case 'program':
+        $results['programs'][] = $result_item;
+        break;
+      case 'event':
+        $results['events'][] = $result_item;
+        break;
+    }
+  }
+
+  wp_reset_postdata();
+
+  return $results;
 }
 
 add_action('rest_api_init', 'universityRegisterSearch');
