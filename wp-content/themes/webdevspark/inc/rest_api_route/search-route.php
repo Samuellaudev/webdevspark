@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Registers the REST route for university search.
+ */
 function universityRegisterSearch() {
   register_rest_route('university/v1', 'search', [
     'methods' => 'GET',
@@ -7,7 +10,28 @@ function universityRegisterSearch() {
   ]);
 }
 
+/**
+ * Callback function for handling university search results.
+ *
+ * @param array $data The data received from the REST request.
+ * @return array The formatted search results.
+ */
 function universitySearchResults($data) {
+
+  $mainQueryResults = performMainQuery($data);
+
+  $results = handleRelatedQueries($mainQueryResults);
+
+  return $results;
+}
+
+/**
+ * Performs the main query to search for posts based on the given search term.
+ *
+ * @param array $data The data received from the REST request.
+ * @return array The main query results grouped by post type.
+ */
+function performMainQuery($data) {
   // Main query
   $searchTerm = sanitize_text_field($data['term']);
 
@@ -17,7 +41,7 @@ function universitySearchResults($data) {
     's' => $searchTerm
   ]);
 
-  $results = [
+  $mainQueryResults = [
     'generalInfo' => [],
     'professors' => [],
     'programs' => [],
@@ -64,23 +88,33 @@ function universitySearchResults($data) {
     switch ($postType) {
       case 'post':
       case 'page':
-        $results['generalInfo'][] = $result_item;
+        $mainQueryResults['generalInfo'][] = $result_item;
         break;
       case 'professor':
-        $results['professors'][] = $result_item;
+        $mainQueryResults['professors'][] = $result_item;
         break;
       case 'program':
-        $results['programs'][] = $result_item;
+        $mainQueryResults['programs'][] = $result_item;
         break;
       case 'event':
-        $results['events'][] = $result_item;
+        $mainQueryResults['events'][] = $result_item;
         break;
     }
   }
 
   wp_reset_postdata();
 
-  // Secondary query for programs
+  return $mainQueryResults;
+}
+
+/**
+ * Handles related queries based on the main query results to refine the search results.
+ *
+ * @param array $results The main query results.
+ * @return array The refined search results with related data.
+ */
+function handleRelatedQueries($results) {
+  // Perform secondary query for related professors based on programs
   if ($results['programs']) {
     $programMetaQuery = ['relation' => 'OR'];
 
