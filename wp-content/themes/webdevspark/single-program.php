@@ -6,24 +6,24 @@ while (have_posts()) {
   pageBanner(['subtitle' => 'DONT FORGET TO REPLACE ME LATER']);
 ?>
 
-  <div class="container container--narrow page-section">
-    <div class="metabox metabox--position-up metabox--with-home-link">
-      <p>
-        <a class="metabox__blog-home-link" href="<?= get_post_type_archive_link('program') ?>">
-          <i class="fa fa-home" aria-hidden="true"></i> All Programs
-        </a>
-        <span class="metabox__main">
-          Posted by <?php the_author_posts_link() ?>
-          on <?php the_time('M j, Y') ?>
-          in <?= get_the_category_list(', ') ?>
-        </span>
-      </p>
-    </div>
-    <div class="generic-content">
-      <?php the_content() ?>
-    </div>
+<div class="container container--narrow page-section">
+  <div class="metabox metabox--position-up metabox--with-home-link">
+    <p>
+      <a class="metabox__blog-home-link" href="<?= get_post_type_archive_link('program') ?>">
+        <i class="fa fa-home" aria-hidden="true"></i> All Programs
+      </a>
+      <span class="metabox__main">
+        Posted by <?php the_author_posts_link() ?>
+        on <?php the_time('M j, Y') ?>
+        in <?= get_the_category_list(', ') ?>
+      </span>
+    </p>
+  </div>
+  <div class="generic-content">
+    <?php the_field('main_body_content') ?>
+  </div>
 
-    <?php
+  <?php
     // Query related professors
     $relatedProfessors = new WP_Query(([
       'posts_per_page' => -1,
@@ -40,27 +40,27 @@ while (have_posts()) {
     ]))
     ?>
 
-    <?php if ($relatedProfessors->have_posts()) { ?>
-      <hr class="section-break">
-      <h3 class="headline headline--small-plus">
-        <?php get_the_title() ?> Professors
-      </h3>
+  <?php if ($relatedProfessors->have_posts()) { ?>
+  <hr class="section-break">
+  <h3 class="headline headline--small-plus">
+    <?php get_the_title() ?> Professors
+  </h3>
 
-      <ul class="professor-cards">
-        <?php while ($relatedProfessors->have_posts()) {
+  <ul class="professor-cards">
+    <?php while ($relatedProfessors->have_posts()) {
           $relatedProfessors->the_post(); ?>
-          <li class="professor-card__list-item">
-            <a class="professor-card" href="<?php the_permalink() ?>">
-              <img class="professor-card__image" src="<?php the_post_thumbnail_url('professorPortrait') ?>" alt="">
-              <span class="professor-card__name"><?php the_title() ?></span>
-            </a>
-          </li>
-        <?php } ?>
-      </ul>
-      <?php wp_reset_postdata(); ?>
+    <li class="professor-card__list-item">
+      <a class="professor-card" href="<?php the_permalink() ?>">
+        <img class="professor-card__image" src="<?php the_post_thumbnail_url('professorPortrait') ?>" alt="">
+        <span class="professor-card__name"><?php the_title() ?></span>
+      </a>
+    </li>
     <?php } ?>
+  </ul>
+  <?php wp_reset_postdata(); ?>
+  <?php } ?>
 
-    <?php
+  <?php
     // Query upcoming events related to the current program
     $today = date('Ymd');
     $homepageEvents = new WP_Query(array(
@@ -85,20 +85,20 @@ while (have_posts()) {
     ));
     ?>
 
-    <?php if ($homepageEvents->have_posts()) { ?>
-      <hr class="section-break">
-      <h3 class="headline headline--small-plus">
-        Upcoming <?php get_the_title() ?> Events
-      </h3>
+  <?php if ($homepageEvents->have_posts()) { ?>
+  <hr class="section-break">
+  <h3 class="headline headline--small-plus">
+    Upcoming <?php get_the_title() ?> Events
+  </h3>
 
-      <?php while ($homepageEvents->have_posts()) {
+  <?php while ($homepageEvents->have_posts()) {
         $homepageEvents->the_post();
         get_template_part('template-parts/content', 'events');
       } ?>
 
-    <?php wp_reset_postdata();
+  <?php wp_reset_postdata();
     } ?>
-  </div>
+</div>
 <?php
 }
 
