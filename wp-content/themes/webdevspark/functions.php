@@ -1,6 +1,7 @@
 <?php
 
-require_once get_template_directory() . '/inc/enqueue-scripts.php';
+require_once get_template_directory() . '/inc/enqueue-scripts/index.php';
+require_once get_template_directory() . '/inc/enqueue-scripts/login-screen.php';
 
 require_once get_template_directory() . '/inc/theme-setup.php';
 
