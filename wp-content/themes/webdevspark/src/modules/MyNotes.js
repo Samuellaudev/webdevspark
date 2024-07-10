@@ -4,6 +4,7 @@ class MyNotes {
   constructor() {
     this.deleteNoteButton = document.querySelectorAll(".delete-note");
     this.editNoteButton = document.querySelectorAll(".edit-note");
+    this.updateNoteButton = document.querySelectorAll(".update-note");
     this.events();
   }
 
@@ -18,6 +19,11 @@ class MyNotes {
         btn.addEventListener('click', (e) => this.editNote(e))
       })
     }
+    if (this.updateNoteButton) {
+      this.updateNoteButton.forEach(btn => {
+        btn.addEventListener('click', (e) => this.updateNote(e))
+      })
+    }
   }
 
   async deleteNote(e) {
@@ -28,6 +34,7 @@ class MyNotes {
     try {
       const response = await axios.delete(url, {
         headers: {
+          'Content-Type': 'application/json',
           'X-WP-Nonce': siteConfig.nonce
         }
       })
@@ -45,16 +52,73 @@ class MyNotes {
     }
   }
 
-  async editNote(e) {
+  editNote(e) {
     const thisNote = e.target.closest('li');
-    thisNote.querySelectorAll('.note-title-field, .note-body-field')
-      .forEach(field => {
-        field.removeAttribute('readonly')
-        field.classList.add('note-active-field')
-      })
+    const noteState = thisNote.getAttribute('data-state')
+
+    if (noteState === 'editable') {
+      this.makeNoteReadOnly(thisNote)
+    } else {
+      this.makeNoteEditable(thisNote)
+    }
+  }
+
+  makeNoteReadOnly(thisNote) {
+    const editNoteBtn = thisNote.querySelector('.edit-note')
+    editNoteBtn.innerHTML = '<i class="fa fa-pencil" aria-hidden="true"></i> Edit'
+
+    this.toggleNoteFields(thisNote, true)
+
+    const updateButton = thisNote.querySelector('.update-note')
+    updateButton.classList.remove('update-note--visible')
+
+    thisNote.dataset.state = 'cancel'
+  }
+
+  makeNoteEditable(thisNote) {
+    const editNoteBtn = thisNote.querySelector('.edit-note')
+    editNoteBtn.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i> Cancel'
+
+    this.toggleNoteFields(thisNote, false)
 
     const updateButton = thisNote.querySelector('.update-note')
     updateButton.classList.add('update-note--visible')
+
+    thisNote.dataset.state = 'editable'
+  }
+
+  // Helper to toggle note fields' readonly state
+  toggleNoteFields(thisNote, isReadOnly) {
+    const fields = thisNote.querySelectorAll('.note-title-field, .note-body-field');
+    fields.forEach(field => {
+      field.toggleAttribute('readonly', isReadOnly);
+      field.classList.toggle('note-active-field', !isReadOnly);
+    });
+  }
+
+  async updateNote(e) {
+    const thisNote = e.target.closest('li');
+    const noteId = thisNote.getAttribute('data-id')
+    const url = `${ siteConfig.root_url }/wp-json/wp/v2/note/${ noteId }`;
+
+    const updatePostData = {
+      title: thisNote.querySelector('.note-title-field').value,
+      content: thisNote.querySelector('.note-body-field').value
+    }
+
+    try {
+      await axios.post(url, updatePostData, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-WP-Nonce': siteConfig.nonce
+        }
+      })
+
+      this.makeNoteReadOnly(thisNote)
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
