@@ -16,7 +16,9 @@ function university_post_types() {
       'all_items' => 'All Events',
       'singular_name' => 'Event',
     ],
-    'menu_icon' => 'dashicons-calendar'
+    'menu_icon' => 'dashicons-calendar',
+    'capability_type' => 'event',
+    'map_meta_cap' => true
   ]);
 
   // Program Post Type
