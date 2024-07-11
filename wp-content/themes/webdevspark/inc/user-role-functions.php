@@ -32,3 +32,22 @@ function removeAdminBar() {
 }
 
 add_action('wp_loaded', 'removeAdminBar');
+
+/**
+ * Filter callback to make 'note' post type posts private before insertion.
+ *
+ * @param array $data An array of slashed post data.
+ * @return array Modified post data.
+ */
+function makeNotePrivate($data) {
+  if (
+    $data['post_type'] === 'note' &&
+    $data['post_status'] !== 'trash'
+  ) {
+    $data['post_status'] = 'private';
+  }
+
+  return $data;
+}
+
+add_filter('wp_insert_post_data', 'makeNotePrivate');
