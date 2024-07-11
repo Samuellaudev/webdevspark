@@ -5,6 +5,7 @@ class MyNotes {
     this.deleteNoteButton = document.querySelectorAll(".delete-note");
     this.editNoteButton = document.querySelectorAll(".edit-note");
     this.updateNoteButton = document.querySelectorAll(".update-note");
+    this.createNoteButton = document.querySelector(".submit-note");
     this.events();
   }
 
@@ -24,6 +25,7 @@ class MyNotes {
         btn.addEventListener('click', (e) => this.updateNote(e))
       })
     }
+    this.createNoteButton.addEventListener('click', (e) => this.createNote(e))
   }
 
   async deleteNote(e) {
@@ -116,6 +118,40 @@ class MyNotes {
 
       this.makeNoteReadOnly(thisNote)
 
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async createNote(e) {
+    const url = `${ siteConfig.root_url }/wp-json/wp/v2/note/`;
+
+    const newPostData = {
+      title: document.querySelector('.new-note-title').value,
+      content: document.querySelector('.new-note-body').value,
+      status: 'publish'
+    }
+
+    try {
+      const response = await axios.post(url, newPostData, {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-WP-Nonce': siteConfig.nonce
+        }
+      })
+
+      if (response.status === 201) {
+        const newListItem = document.createElement('li');
+        newListItem.textContent = 'test';
+
+        // Insert new list item at beginning
+        const notesList = document.getElementById('my-notes');
+        notesList.insertBefore(newListItem, notesList.firstChild);
+        newListItem.style.display = 'none';
+        setTimeout(() => {
+          newListItem.style.display = 'block';
+        }, 0);
+      }
     } catch (error) {
       console.log(error);
     }
