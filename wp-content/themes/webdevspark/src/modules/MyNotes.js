@@ -28,7 +28,12 @@ class MyNotes {
     const url = `${ siteConfig.root_url }/wp-json/wp/v2/note/${ noteId }`;
 
     try {
-      await axios.delete(url)
+      const response = await axios.delete(url)
+
+      if (response.data.userNoteCount < 5) {
+        const noteLimitMessage = document.querySelector('.note-limit-message')
+        noteLimitMessage.classList.remove('active')
+      }
 
       // Add fade-out animation and remove note after delay
       thisNote.style.height = `${ thisNote.offsetHeight }px`;
@@ -118,6 +123,11 @@ class MyNotes {
 
     try {
       const response = await axios.post(url, newPostData)
+
+      if (response.data === "You have reached your note limit") {
+        const noteLimitMessage = document.querySelector('.note-limit-message')
+        noteLimitMessage.classList.add('active')
+      }
 
       if (response.status === 201) {
         const { id, title, content } = response.data

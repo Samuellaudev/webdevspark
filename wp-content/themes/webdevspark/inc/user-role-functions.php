@@ -37,12 +37,22 @@ add_action('wp_loaded', 'removeAdminBar');
  * Filter callback to make 'note' post type posts private before insertion.
  *
  * @param array $data An array of slashed post data.
+ * @param array $postarr An array of sanitized (and slashed) but otherwise unmodified post data.
  * @return array Modified post data.
  */
-function makeNotePrivate($data) {
+function makeNotePrivate($data, $postarr) {
   if ($data['post_type'] === 'note') {
     if ($data['post_status'] !== 'trash') {
       $data['post_status'] = 'private';
+    }
+
+    // To check the amount of ‘note’ the current user posted, and 
+    // to check if we can find the post ID (return false for new note)
+    if (
+      count_user_posts(get_current_user_id(), 'note') > 4 &&
+      !$postarr['ID']
+    ) {
+      die('You have reached your note limit');
     }
 
     $data['post_title'] = sanitize_text_field($data['post_title']);
@@ -52,4 +62,4 @@ function makeNotePrivate($data) {
   return $data;
 }
 
-add_filter('wp_insert_post_data', 'makeNotePrivate');
+add_filter('wp_insert_post_data', 'makeNotePrivate', 10, 2);
