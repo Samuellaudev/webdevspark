@@ -1,6 +1,7 @@
 <?php
 
 require_once get_template_directory() . '/inc/rest_api_route/search-route.php';
+require_once get_template_directory() . '/inc/rest_api_route/like-route.php';
 
 function university_custom_rest() {
   register_rest_field('post', 'authorName', [
