@@ -2,29 +2,23 @@ import axios from "axios";
 
 class MyNotes {
   constructor() {
-    this.deleteNoteButton = document.querySelectorAll(".delete-note");
-    this.editNoteButton = document.querySelectorAll(".edit-note");
-    this.updateNoteButton = document.querySelectorAll(".update-note");
-    this.createNoteButton = document.querySelector(".submit-note");
-    this.events();
+    if (document.querySelector("#my-notes")) {
+      axios.defaults.headers.common['X-WP-Nonce'] = siteConfig.nonce
+      axios.defaults.headers.common['Content-Type'] = 'application/json'
+      this.myNotes = document.querySelector("#my-notes")
+      this.createNoteButton = document.querySelector(".submit-note");
+
+      this.events()
+    }
   }
 
   events() {
-    if (this.deleteNoteButton) {
-      this.deleteNoteButton.forEach(btn => {
-        btn.addEventListener('click', (e) => this.deleteNote(e))
-      });
-    }
-    if (this.editNoteButton) {
-      this.editNoteButton.forEach(btn => {
-        btn.addEventListener('click', (e) => this.editNote(e))
-      })
-    }
-    if (this.updateNoteButton) {
-      this.updateNoteButton.forEach(btn => {
-        btn.addEventListener('click', (e) => this.updateNote(e))
-      })
-    }
+    this.myNotes.addEventListener('click', (e) => {
+      if (e.target.classList.contains('delete-note')) this.deleteNote.bind(this)(e)
+      if (e.target.classList.contains('edit-note')) this.editNote.bind(this)(e)
+      if (e.target.classList.contains('update-note')) this.updateNote.bind(this)(e)
+    })
+
     this.createNoteButton.addEventListener('click', (e) => this.createNote(e))
   }
 
@@ -34,12 +28,7 @@ class MyNotes {
     const url = `${ siteConfig.root_url }/wp-json/wp/v2/note/${ noteId }`;
 
     try {
-      const response = await axios.delete(url, {
-        headers: {
-          'Content-Type': 'application/json',
-          'X-WP-Nonce': siteConfig.nonce
-        }
-      })
+      await axios.delete(url)
 
       // Add fade-out animation and remove note after delay
       thisNote.style.height = `${ thisNote.offsetHeight }px`;
@@ -109,12 +98,7 @@ class MyNotes {
     }
 
     try {
-      await axios.post(url, updatePostData, {
-        headers: {
-          'Content-Type': 'application/json',
-          'X-WP-Nonce': siteConfig.nonce
-        }
-      })
+      await axios.post(url, updatePostData)
 
       this.makeNoteReadOnly(thisNote)
 
@@ -123,7 +107,7 @@ class MyNotes {
     }
   }
 
-  async createNote(e) {
+  async createNote() {
     const url = `${ siteConfig.root_url }/wp-json/wp/v2/note/`;
 
     const newPostData = {
@@ -133,24 +117,50 @@ class MyNotes {
     }
 
     try {
-      const response = await axios.post(url, newPostData, {
-        headers: {
-          'Content-Type': 'application/json',
-          'X-WP-Nonce': siteConfig.nonce
-        }
-      })
+      const response = await axios.post(url, newPostData)
 
       if (response.status === 201) {
-        const newListItem = document.createElement('li');
-        newListItem.textContent = 'test';
+        const { id, title, content } = response.data
+        const postHtml = `
+        <li data-id="${id}" class="fade-in-calc">
+          <input readonly class='note-title-field' value="${ title?.raw}">
+          <span class="edit-note">
+            <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+          </span>
+          <span class="delete-note">
+            <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+          </span>
+          <textarea readonly name="" id="" cols="30" rows="10" class='note-body-field'>
+            ${content?.raw}
+          </textarea>
+          <span class="update-note btn btn--blue btn--small">
+            <i class="fa fa-arrow-right" aria-hidden="true"></i> Save
+          </span>
+        </li>`
 
-        // Insert new list item at beginning
-        const notesList = document.getElementById('my-notes');
-        notesList.insertBefore(newListItem, notesList.firstChild);
-        newListItem.style.display = 'none';
-        setTimeout(() => {
-          newListItem.style.display = 'block';
-        }, 0);
+        document.querySelector('#my-notes').insertAdjacentHTML('afterbegin', postHtml)
+        document.querySelector('.new-note-title').value = ''
+        document.querySelector('.new-note-body').value = ''
+
+        let finalHeight // browser needs a specific height to transition to, you can't transition to 'auto' height
+        let newlyCreated = document.querySelector("#my-notes li")
+
+        // give the browser 30 milliseconds to have the invisible element added to the DOM before moving on
+        setTimeout(function () {
+          finalHeight = `${newlyCreated.offsetHeight}px`
+          newlyCreated.style.height = "0px"
+        }, 30)
+
+        // give the browser another 20 milliseconds to count the height of the invisible element before moving on
+        setTimeout(function () {
+          newlyCreated.classList.remove("fade-in-calc")
+          newlyCreated.style.height = finalHeight
+        }, 50)
+
+        // wait the duration of the CSS transition before removing the hardcoded calculated height from the element so that our design is responsive once again
+        setTimeout(function () {
+          newlyCreated.style.removeProperty("height")
+        }, 450)
       }
     } catch (error) {
       console.log(error);
