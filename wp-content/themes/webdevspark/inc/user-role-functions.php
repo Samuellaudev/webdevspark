@@ -40,11 +40,13 @@ add_action('wp_loaded', 'removeAdminBar');
  * @return array Modified post data.
  */
 function makeNotePrivate($data) {
-  if (
-    $data['post_type'] === 'note' &&
-    $data['post_status'] !== 'trash'
-  ) {
-    $data['post_status'] = 'private';
+  if ($data['post_type'] === 'note') {
+    if ($data['post_status'] !== 'trash') {
+      $data['post_status'] = 'private';
+    }
+
+    $data['post_title'] = sanitize_text_field($data['post_title']);
+    $data['post_content'] = sanitize_textarea_field($data['post_content']);
   }
 
   return $data;

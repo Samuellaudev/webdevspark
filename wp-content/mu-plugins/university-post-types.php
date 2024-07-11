@@ -70,7 +70,9 @@ function university_post_types() {
       'singular_name' => 'Note'
     ),
     'menu_icon' => 'dashicons-welcome-write-blog',
-    "show_ui" => true
+    "show_ui" => true,
+    'capability_type' => 'note',
+    'map_meta_cap' => true
   ]);
 }
 
