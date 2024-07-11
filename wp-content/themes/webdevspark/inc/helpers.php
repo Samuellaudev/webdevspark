@@ -21,3 +21,16 @@ function debug_dump($variable) {
   var_dump($variable);
   echo '</pre>';
 }
+
+/**
+ * Logs debug data to the WordPress debug log.
+ *
+ * @param mixed $data The data to be logged.
+ * @param string $label Optional. A label to prefix the log entry with. Default is 'DEBUG'.
+ */
+function debug_log($data, $label = 'DEBUG') {
+  if (defined('WP_DEBUG') && WP_DEBUG) {
+    $log_entry = $label . ': ' . print_r($data, true);
+    error_log($log_entry);
+  }
+}

@@ -38,9 +38,12 @@ class Like {
 
   async createLike(currentLikeBox) {
     const url = `${ siteConfig.root_url }/wp-json/university/v1/manageLike`
+    const data = {
+      professorId: currentLikeBox.getAttribute('data-professor'),
+    }
 
     try {
-      const response = await axios.post(url)
+      const response = await axios.post(url, data)
       console.log('create', response)
     } catch (error) {
       console.log(error);
