@@ -74,6 +74,22 @@ function university_post_types() {
     'capability_type' => 'note',
     'map_meta_cap' => true
   ]);
+
+  // Like Post Type
+  register_post_type('like', [
+    'public' => false,
+    'supports' => array('title'),
+    'labels' => array(
+      'name' => 'Likes',
+      'add_new' => 'Add New Like',
+      'add_new_item' => 'Add New Like',
+      'edit_item' => 'Edit Like',
+      'all_items' => 'All Likes',
+      'singular_name' => 'Like'
+    ),
+    'menu_icon' => 'dashicons-heart',
+    "show_ui" => true,
+  ]);
 }
 
 add_action('init', 'university_post_types');
