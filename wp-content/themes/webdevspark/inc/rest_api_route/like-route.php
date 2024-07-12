@@ -31,12 +31,13 @@ function createLike($data) {
       ]
     ]);
 
-    // If the current user has not already liked this professor and professorId is of type 'professor'
+    // If the current user has not already liked this professor 
+    // and professorId is of type 'professor'
     if (
       $currentUserLike->found_posts === 0 &&
       get_post_type($professorId) === 'professor'
     ) {
-      $like_id = wp_insert_post(array(
+      $likeId = wp_insert_post(array(
         'post_type' => 'like',
         'post_status' => 'publish',
         'post_title' => 'Like for Professor ' . $professorId,
@@ -47,7 +48,7 @@ function createLike($data) {
 
       return [
         'message' => 'Like created successfully',
-        'like_id' => $like_id
+        'like_id' => $likeId
       ];
     } else {
       die('Invalid professor Id');
@@ -57,8 +58,22 @@ function createLike($data) {
   }
 }
 
-function deleteLike() {
-  return 'trying to delete a like...';
+function deleteLike($data) {
+  $likeId = sanitize_text_field($data['likeId']);
+  $postAuthorId = intval(get_post_field('post_author', $likeId));
+
+  // Check if the current user is the author of the post with the given likeId 
+  // and if the post type is 'like'
+  if (
+    get_current_user_id() !== $postAuthorId &&
+    get_post_type($likeId) !== 'like'
+  ) {
+    wp_die('You do not have permission to delete.');
+  }
+
+  wp_delete_post($likeId, true);
+
+  return 'The like was deleted successfully';
 }
 
 add_action('rest_api_init', 'universityLikeRoutes');

@@ -46,9 +46,16 @@ while (have_posts()) {
               $likeStatus = 'yes';
             }
           }
+
+          // Find the ID of the liked post
+          $existLike = null;
+
+          if (isset($currentUserLike->posts[0]->ID)) {
+            $existLike = $currentUserLike->posts[0]->ID;
+          }
           ?>
 
-        <span class="like-box" data-exists="<?php echo $likeStatus ?>" data-professor="<?php the_ID() ?>">
+        <span class="like-box" data-exists="<?php echo $likeStatus ?>" data-professor="<?php the_ID() ?>" data-like="<?php echo $existLike ?>">
           <i class="fa fa-heart-o" aria-hidden="true"></i>
           <i class="fa fa-heart" aria-hidden="true"></i>
           <span class="like-count"><?php echo $likeCount->found_posts; ?></span>

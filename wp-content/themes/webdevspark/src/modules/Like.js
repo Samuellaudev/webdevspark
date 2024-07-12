@@ -27,10 +27,24 @@ class Like {
 
   async deleteLike(currentLikeBox) {
     const url = `${ siteConfig.root_url }/wp-json/university/v1/manageLike`
+    const data = {
+      likeId: currentLikeBox.getAttribute('data-like')
+    }
 
     try {
-      const response = await axios.delete(url)
-      console.log('delete', response)
+      const response = await axios.delete(url, { data })
+
+      if (response.data === 'The like was deleted successfully') {
+        currentLikeBox.setAttribute('data-exists', 'no');
+
+        const likeCountElement = currentLikeBox.querySelector('.like-count');
+        let likeCount = parseInt(likeCountElement.innerHTML, 10)
+
+        likeCount--
+        likeCountElement.innerHTML = likeCount
+
+        currentLikeBox.setAttribute('data-like', '')
+      }
     } catch (error) {
       console.log(error);
     }
@@ -45,6 +59,17 @@ class Like {
     try {
       const response = await axios.post(url, data)
 
+      if (response.data !== "Only logged in users can create a like.") { 
+        currentLikeBox.setAttribute('data-exists', 'yes');
+
+        const likeCountElement = currentLikeBox.querySelector('.like-count');
+        let likeCount = parseInt(likeCountElement.innerHTML, 10)
+
+        likeCount++
+        likeCountElement.innerHTML = likeCount
+
+        currentLikeBox.setAttribute('data-like', response.data.like_id)
+      }
     } catch (error) {
       if (error.response) {
         console.log('Server responded with:', error.response.data);
