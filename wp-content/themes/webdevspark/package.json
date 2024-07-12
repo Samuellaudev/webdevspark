@@ -18,5 +18,8 @@
     "@wordpress/scripts": "^27.9.0",
     "axios": "^1.6.8",
     "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
   }
 }
