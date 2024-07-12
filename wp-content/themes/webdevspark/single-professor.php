@@ -28,21 +28,23 @@ while (have_posts()) {
 
           $likeStatus = 'no';
 
-          // Check if the current user has liked this professor
-          $currentUserLike = new WP_Query([
-            'author' => get_current_user_id(),
-            'post_type' => 'like',
-            'meta_query' => [
-              [
-                'key' => 'liked_professor_id',
-                'compare' => '=',
-                'value' => get_the_ID()
+          if (is_user_logged_in()) {
+            // Check if the current user has liked this professor
+            $currentUserLike = new WP_Query([
+              'author' => get_current_user_id(),
+              'post_type' => 'like',
+              'meta_query' => [
+                [
+                  'key' => 'liked_professor_id',
+                  'compare' => '=',
+                  'value' => get_the_ID()
+                ]
               ]
-            ]
-          ]);
+            ]);
 
-          if ($currentUserLike->found_posts) {
-            $likeStatus = 'yes';
+            if ($currentUserLike->found_posts) {
+              $likeStatus = 'yes';
+            }
           }
           ?>
 
