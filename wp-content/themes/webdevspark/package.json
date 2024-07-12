@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "wp-scripts build",
-    "start": "wp-scripts start",
-    "dev": "wp-scripts start",
-    "devFast": "wp-scripts start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "run-p sync wpstart tailwindwatch",
+    "start": "run-p wpstart tailwindwatch",
+    "wpstart": "wp-scripts start",
+    "buildwp": "wp-scripts build",
+    "build": "run-s buildwp tailwindbuild",
+    "sync": "browser-sync start -p 'webdevspark.local' --files '**/*.php' 'build/*.js' 'build/*.css'",
+    "tailwindbuild": "tailwindcss -i ./src/input.css -o ./build/output.css --minify",
+    "tailwindwatch": "tailwindcss -i ./src/input.css -o ./build/output.css --watch --minify"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +23,8 @@
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
+    "browser-sync": "^3.0.2",
+    "npm-run-all2": "^6.2.2",
     "tailwindcss": "^3.4.4"
   }
 }
