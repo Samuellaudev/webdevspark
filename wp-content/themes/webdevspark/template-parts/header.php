@@ -34,24 +34,25 @@
             <li <?php if (get_post_type() === 'event' || is_page('past-events')) echo 'class="current-menu-item"' ?>>
               <a href="<?php echo get_post_type_archive_link('event') ?>">Events</a>
             </li>
-            <li <?php if (is_page('campuses') || wp_get_post_parent_id(get_the_ID()) === 5) echo 'class="current-menu-item"' ?>>
+            <!-- <li <?php if (is_page('campuses') || wp_get_post_parent_id(get_the_ID()) === 5) echo 'class="current-menu-item"' ?>>
               <a href="<?= site_url('/campuses') ?>">Campuses</a>
-            </li>
+            </li> -->
             <li <?php if (get_post_type() === 'post') echo 'class="current-menu-item"' ?>>
               <a href="<?= site_url('/blog') ?>">Blog</a>
             </li>
           </ul>
         </nav>
         <div class="site-header__util">
-          <?php if (is_user_logged_in()) { ?>
+          <?php if (is_user_logged_in()) : ?>
+          <a href="<? echo esc_url(site_url('/my-notes')) ?>" class="btn btn--small btn--orange float-left push-right">My Notes</a>
           <a href="<?php echo wp_logout_url() ?>" class="btn btn--small btn--dark-orange float-left btn--with-photo">
             <span class="site-header__avatar"><?php echo get_avatar(get_current_user_id(), 60) ?></span>
             <span class="btn__text">Log out</span>
           </a>
-          <?php } else { ?>
+          <?php else : ?>
           <a href="<?php echo esc_url(wp_login_url()) ?>" class="btn btn--small btn--orange float-left push-right">Login</a>
           <a href="<?php echo esc_url(wp_registration_url()) ?>" class="btn btn--small btn--dark-orange float-left">Sign Up</a>
-          <?php } ?>
+          <?php endif; ?>
           <span class="search-trigger js-search-trigger"><i class="fa fa-search" aria-hidden="true"></i></span>
         </div>
       </div>
