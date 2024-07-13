@@ -3,7 +3,7 @@ get_template_part('template-parts/header');
 
 pageBanner(['subtitle' => 'DONT FORGET TO REPLACE ME LATER']);
 
-while (have_posts()) {
+while (have_posts()) :
   the_post();
 ?>
 <div class="container container--narrow page-section">
@@ -24,7 +24,7 @@ while (have_posts()) {
   </div>
 </div>
 <?php
-}
+endwhile;
 
 get_template_part('template-parts/footer');
 ?>
