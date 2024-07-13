@@ -1,11 +1,21 @@
+<?php
+$event_date_field = get_field('event_date');
+$event_date = null;
+
+if ($event_date_field) {
+  $event_date = new DateTime($event_date_field);
+} else {
+  $event_date = new DateTime(get_the_date('Y-m-d'));
+}
+?>
+
 <div class="event-summary">
   <a class="event-summary__date event-summary__date--beige t-center" href="<?php the_permalink(); ?>">
-    <?php $eventDate = new DateTime(get_field('event_date')) ?>
     <span class="event-summary__month">
-      <?php echo $eventDate->format('M') ?>
+      <?php echo $event_date->format('M') ?>
     </span>
     <span class="event-summary__day">
-      <?php echo $eventDate->format('d') ?>
+      <?php echo $event_date->format('d') ?>
     </span>
   </a>
   <div class="event-summary__content">
