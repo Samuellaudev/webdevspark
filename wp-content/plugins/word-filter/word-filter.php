@@ -11,14 +11,20 @@
 if (!defined('ABSPATH')) exit;
 
 require_once plugin_dir_path(__FILE__) . 'inc/admin-page.php';
+require_once plugin_dir_path(__FILE__) . 'inc/options-page.php';
 require_once plugin_dir_path(__FILE__) . 'inc/form-handler.php';
+require_once plugin_dir_path(__FILE__) . 'inc/filter-logic.php';
 
 class WordFilterPlugin {
   public function __construct() {
     add_action('admin_menu', [$this, 'menu']);
+    add_action('admin_init', [$this, 'optionsSettings']);
+    if (get_option('plugin_words_to_filter')) {
+      add_filter('the_content', [$this, 'filterLogic']);
+    }
   }
 
-  function menu() {
+  public function menu() {
     $mainPageHook = add_menu_page(
       'Words To Filter',
       'Word Filter',
@@ -33,17 +39,25 @@ class WordFilterPlugin {
     add_action("load-{$mainPageHook}", [$this, 'mainPageAssets']);
   }
 
-  function mainPageAssets() {
+  public function mainPageAssets() {
     wp_enqueue_style('filterAdminCss', plugin_dir_url(__FILE__) . 'style.css');
   }
 
-  function wordFilterPage() {
+  public function wordFilterPage() {
     displayWordFilterPage();
   }
 
-  function optionsSubPage() { ?>
-test2
-<?php }
+  public function optionsSubPage() {
+    displayOptionsSubPage();
+  }
+
+  public function optionsSettings() {
+    applyOptionsSettings();
+  }
+
+  public function filterLogic($content) {
+    return applyFilterLogic($content);
+  }
 }
 
 
