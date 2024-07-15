@@ -28,7 +28,7 @@ const FrownIcon = () => (
   </svg>
 );
 
-const Quiz = ({ question, answers, correctAnswer }) => {
+const Quiz = ({ question, answers, correctAnswer, bgColor }) => {
   const [isCorrect, setIsCorrect] = useState(null);
   const [isCorrectDelayed, setIsCorrectDelayed] = useState(null);
 
@@ -56,7 +56,7 @@ const Quiz = ({ question, answers, correctAnswer }) => {
   }
 
   return (
-    <div className="paying-attention-frontend">
+    <div className="paying-attention-frontend" style={{ backgroundColor: bgColor}}>
       <p>{ question }</p>
       <ul>
         { answers.map((answer, index) => (

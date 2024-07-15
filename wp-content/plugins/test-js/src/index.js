@@ -1,4 +1,6 @@
-import { TextControl, Flex, FlexBlock, FlexItem, Button, Icon } from '@wordpress/components'
+import { TextControl, Flex, FlexBlock, FlexItem, Button, Icon, PanelBody, PanelRow, ColorPicker } from '@wordpress/components'
+import { InspectorControls } from '@wordpress/block-editor'
+import { ChromePicker } from 'react-color'
 import './index.scss'
 
 (() => {
@@ -31,7 +33,8 @@ wp.blocks.registerBlockType('js-plugin/test-js-plugin', {
   attributes: {
     question: { type: "string" },
     answers: { type: "array", default: ["redd", "green", "blue"] },
-    correctAnswer: { type: 'number', default: undefined }
+    correctAnswer: { type: 'number', default: undefined },
+    bgColor: { type: "string", default: '#EBEBEB'}
   },
   edit: EditComponent,
   save: ({ attributes }) => {
@@ -68,7 +71,21 @@ function EditComponent({ attributes, setAttributes }) {
   }
 
   return (
-    <div className="paying-attention-edit-block">
+    <div
+      className="paying-attention-edit-block"
+      style={{ backgroundColor: attributes.bgColor}}
+    >
+      <InspectorControls>
+        <PanelBody title='Background Color' initialOpen>
+          <PanelRow>
+            <ChromePicker
+              disableAlpha
+              color={ attributes.bgColor }
+              onChangeComplete={ color => setAttributes({ bgColor: color.hex}) }
+              />
+          </PanelRow>
+        </PanelBody>
+      </InspectorControls>
       <TextControl
         label="Question:"
         value={ attributes.question }
