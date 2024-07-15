@@ -1,5 +1,5 @@
 import { TextControl, Flex, FlexBlock, FlexItem, Button, Icon, PanelBody, PanelRow, ColorPicker } from '@wordpress/components'
-import { InspectorControls } from '@wordpress/block-editor'
+import { InspectorControls, BlockControls, AlignmentToolbar } from '@wordpress/block-editor'
 import { ChromePicker } from 'react-color'
 import './index.scss'
 
@@ -14,12 +14,12 @@ import './index.scss'
       return checkBlockName && checkIfCorrectAnswer
     })
 
-    if (results.length && locked === false) { 
+    if (results.length && locked === false) {
       locked = true
       wp.data.dispatch('core/editor').lockPostSaving('noanswer')
     }
 
-    if (!results.length && locked) { 
+    if (!results.length && locked) {
       locked = false
       wp.data.dispatch('core/editor').unlockPostSaving('noanswer')
     }
@@ -34,8 +34,19 @@ wp.blocks.registerBlockType('js-plugin/test-js-plugin', {
     question: { type: "string" },
     answers: { type: "array", default: ["redd", "green", "blue"] },
     correctAnswer: { type: 'number', default: undefined },
-    bgColor: { type: "string", default: '#EBEBEB'}
+    bgColor: { type: "string", default: '#EBEBEB' },
+    alignment: { type: "string", default: 'left' }
   },
+  description: "Here's some description about the plugin",
+  example: {
+    attributes: {
+      question: 'What is my name?',
+      answers: ['Samuel', 'Meowsalot', 'Barksalot'],
+      correctAnswer: 3,
+      bgColor: '#CFE8F1',
+      alignment: 'center'
+    }
+  },  
   edit: EditComponent,
   save: ({ attributes }) => {
     return null
@@ -57,11 +68,11 @@ function EditComponent({ attributes, setAttributes }) {
     setAttributes({ answers: [...attributes.answers, ''] })
   }
 
-  const deleteAnswer = (answer, indexToDelete) => { 
+  const deleteAnswer = (answer, indexToDelete) => {
     const filteredAnswers = [...attributes.answers].filter(item => item !== answer)
     setAttributes({ answers: filteredAnswers })
-    
-    if (indexToDelete === attributes.correctAnswer) { 
+
+    if (indexToDelete === attributes.correctAnswer) {
       setAttributes({ correctAnswer: undefined })
     }
   }
@@ -73,16 +84,22 @@ function EditComponent({ attributes, setAttributes }) {
   return (
     <div
       className="paying-attention-edit-block"
-      style={{ backgroundColor: attributes.bgColor}}
+      style={ { backgroundColor: attributes.bgColor } }
     >
+      <BlockControls>
+        <AlignmentToolbar
+          value={ attributes.alignment }
+          onChange={ position => setAttributes({ alignment: position }) }
+        />
+      </BlockControls>
       <InspectorControls>
         <PanelBody title='Background Color' initialOpen>
           <PanelRow>
             <ChromePicker
               disableAlpha
               color={ attributes.bgColor }
-              onChangeComplete={ color => setAttributes({ bgColor: color.hex}) }
-              />
+              onChangeComplete={ color => setAttributes({ bgColor: color.hex }) }
+            />
           </PanelRow>
         </PanelBody>
       </InspectorControls>
