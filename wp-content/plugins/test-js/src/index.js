@@ -35,12 +35,7 @@ wp.blocks.registerBlockType('js-plugin/test-js-plugin', {
   },
   edit: EditComponent,
   save: ({ attributes }) => {
-    return (
-      <>
-        <p>Sky color is <span className='skyColor'>{ attributes.skyColor }</span></p>
-        <p>Grass color is <span className='grassColor'>{ attributes.grassColor }</span></p>
-      </>
-    )
+    return null
   }
 })
 
@@ -73,7 +68,7 @@ function EditComponent({ attributes, setAttributes }) {
   }
 
   return (
-    <div className="test-js-plugin">
+    <div className="paying-attention-edit-block">
       <TextControl
         label="Question:"
         value={ attributes.question }

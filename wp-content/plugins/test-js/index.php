@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 class TestJsBlock {
   function __construct() {
-    add_action('enqueue_block_editor_assets', array($this, 'adminAssets'));
+    add_action('init', array($this, 'adminAssets'));
   }
 
   function adminAssets() {
@@ -26,10 +26,12 @@ class TestJsBlock {
   }
 
   function theHTML($attributes) {
+    if (!is_admin()) {
+      wp_enqueue_script('frontend', plugin_dir_url(__FILE__) . 'build/frontend.js', ['wp-element'], '1.0', true);
+      wp_enqueue_style('frontend', plugin_dir_url(__FILE__) . 'build/frontend.css');
+    }
     ob_start(); ?>
-<h3>
-  Today the sky is <?php echo esc_html($attributes['skyColor']) ?> and the grass is <?php echo esc_html($attributes['grassColor']) ?>!!!
-</h3>
+<div class="paying-attention-update-me"></div>
 <?php return ob_get_clean();
   }
 }
