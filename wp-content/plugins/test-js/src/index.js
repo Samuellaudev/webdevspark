@@ -28,7 +28,7 @@ import './index.scss'
 
 wp.blocks.registerBlockType('js-plugin/test-js-plugin', {
   title: 'Test JS Plugin',
-  icon: 'smiley',
+  icon: 'admin-page',
   category: 'common',
   attributes: {
     question: { type: "string" },
