@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "custom-multiple-blocks/hover-card-demo",
+	"version": "0.1.0",
+	"title": "Hover Card Demo",
+	"category": "widgets",
+	"icon": "plus-alt",
+	"description": "Example block scaffolded with Create Block tool.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "hover-card-demo",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js",
+	"attributes": {
+		"accountName": {
+			"type": "string"
+		},
+		"accountLink": {
+			"type": "string"
+		},
+		"mainText": {
+			"type": "string"
+		},
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		}
+	}
+}
