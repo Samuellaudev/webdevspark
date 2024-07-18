@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Plugin Name: First Test Plugin
- * Description: This plugin is a test plugin
+ * Plugin Name: Word Count Plugin
+ * Description: It provides real-time word count statistics for posts, pages, and custom post types
  * Version: 1.0
  * Author: Samuel
  * Author URI: https://github.com/samuellaudev
@@ -32,16 +32,16 @@ class WordCountPlugin {
 
   // Render settings page HTML
   public function settingsPageHtml() { ?>
-<div class="wrap">
-  <h1>Word Count Settings</h1>
-  <form action="options.php" method="post">
-    <?php
+    <div class="wrap">
+      <h1>Word Count Settings</h1>
+      <form action="options.php" method="post">
+        <?php
         settings_fields('wordCountPlugin');
         do_settings_sections('word-count-settings-page');
         submit_button();
         ?>
-  </form>
-</div>
+      </form>
+    </div>
 <?php
   }
 
