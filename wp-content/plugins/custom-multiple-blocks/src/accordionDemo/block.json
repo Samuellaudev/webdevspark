@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "custom-multiple-blocks/accordion-demo",
+	"version": "0.1.0",
+	"title": "Accordion Demo",
+	"category": "widgets",
+	"icon": "plus-alt",
+	"description": "Example block scaffolded with Create Block tool.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "custom-multiple-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": [
+		"file:./style-index.css",
+		"file:./index.css"
+	],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js",
+	"attributes": {
+		"alignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"items": {
+			"type": "array"
+		}
+	}
+}

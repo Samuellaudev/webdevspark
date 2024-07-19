@@ -1,0 +1,44 @@
+@import "@radix-ui/colors/red.css";
+
+.wp-block-custom-multiple-blocks-accordion-demo {
+	.AccordionRoot {
+		width: 400px;
+		padding: 20px;
+		margin: 1rem auto;
+		background-color: white;
+	}
+
+	.AccordionItem {
+		display: flex;
+		cursor: pointer;
+	}
+
+	.AccordionTrigger {
+		height: auto;
+		padding: 10px;
+	}
+
+	.AccordionDelete {
+		margin: 0 auto;
+		padding: 10px;
+		text-decoration: none;
+
+		&:hover {
+			color: var(--red-9);
+			border-radius: 10px;
+			border: 1px solid var(--red-9);
+		}
+	}
+
+	.AccordionChevron {
+		margin: 10px;
+	}
+
+	.AccordionContentText {
+    padding: 15px 11px;
+	}
+
+	.AccordionAdd {
+		margin: 10px;
+	}
+}
