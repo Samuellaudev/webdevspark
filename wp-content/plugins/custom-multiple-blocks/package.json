@@ -6,16 +6,20 @@
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
+		"dev": "run-p sync start",
 		"build": "wp-scripts build --webpack-copy-php",
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start --webpack-copy-php"
+		"start": "wp-scripts start --webpack-copy-php",
+		"sync": "browser-sync start -p 'webdevspark.local' --files '**/*.php' 'build/*.js' 'build/*.css'"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^27.9.0"
+		"@wordpress/scripts": "^27.9.0",
+		"browser-sync": "^3.0.2",
+		"npm-run-all2": "^6.2.2"
 	},
 	"dependencies": {
 		"@radix-ui/colors": "^3.0.0",
