@@ -24,6 +24,9 @@
 		"alignment": {
 			"type": "string",
 			"default": "left"
+		},
+		"items": {
+			"type": "array"
 		}
 	}
 }

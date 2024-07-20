@@ -1,3 +1,55 @@
 .wp-block-custom-multiple-blocks-navigation-menu-demo {
-//
+	.NavigationMenuRoot {
+		display: flex;
+		flex-direction: column;
+		height: auto;
+		width: 400px;
+		margin: 0 auto;
+		box-shadow: 0 2px 10px var(--black-a7);
+	}
+
+	.menu-item,
+	.submenu-item {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.subItem-body {
+		border: 1px solid black !important;
+		padding: 10px;
+	}
+
+	.add-item,
+	.add-subitem {
+		margin-top: 10px;
+		width: 130px;
+	}
+
+	.add-item {
+		margin: 20px;
+		margin-bottom: 20px !important;
+	}
+
+	.add-subitem {
+		width: 150px;
+	}
+
+	.delete-item,
+	.delete-subitem {
+		margin-left: 20px;
+		margin-bottom: 20px !important;
+		padding: 10px;
+		text-decoration: none;
+		border: 1px solid var(--red-9);
+
+		&:hover {
+			color: white !important;
+			background-color: var(--red-9);
+			border: 1px solid var(--red-9);
+		}
+	}
+
+	.delete-subitem {
+		margin-left: 0px;
+	}
 }
