@@ -26,6 +26,7 @@ class CustomMultipleBlocks {
 	function custom_multiple_blocks_init() {
 		register_block_type(__DIR__ . '/build/hoverCardDemo');
 		register_block_type(__DIR__ . '/build/accordionDemo');
+		register_block_type(__DIR__ . '/build/navigationMenuDemo');
 	}
 }
 
