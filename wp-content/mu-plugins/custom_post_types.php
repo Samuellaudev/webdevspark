@@ -1,24 +1,22 @@
 <?php
 
 function custom_post_types() {
-  // Event Post Type
-  register_post_type('event', [
+  // Project Post Type
+  register_post_type('project', [
     'public' => true,
     'show_in_rest' => true,
     'has_archive' => true,
-    'rewrite' => array('slug' => 'events'),
+    'rewrite' => array('slug' => 'projects'),
     'supports' => array('title', 'editor', 'excerpt'),
     'labels' => [
-      'name' => 'Events',
-      'add_new' => 'Add New Event',
-      'add_new_item' => 'Add New Event',
-      'edit_item' => 'Edit Event',
-      'all_items' => 'All Events',
-      'singular_name' => 'Event',
+      'name' => 'Projects',
+      'add_new' => 'Add New Project',
+      'add_new_item' => 'Add New Project',
+      'edit_item' => 'Edit Project',
+      'all_items' => 'All Projects',
+      'singular_name' => 'Project',
     ],
-    'menu_icon' => 'dashicons-calendar',
-    'capability_type' => 'event',
-    'map_meta_cap' => true
+    'menu_icon' => 'dashicons-open-folder'
   ]);
 
   // Language Post Type
@@ -108,7 +106,27 @@ function custom_post_types() {
   //     'singular_name' => 'Program'
   //   ),
   //   'menu_icon' => 'dashicons-awards'
-  // ]);  
+  // ]);
+
+  // Event Post Type
+  // register_post_type('event', [
+  //   'public' => true,
+  //   'show_in_rest' => true,
+  //   'has_archive' => true,
+  //   'rewrite' => array('slug' => 'events'),
+  //   'supports' => array('title', 'editor', 'excerpt'),
+  //   'labels' => [
+  //     'name' => 'Events',
+  //     'add_new' => 'Add New Event',
+  //     'add_new_item' => 'Add New Event',
+  //     'edit_item' => 'Edit Event',
+  //     'all_items' => 'All Events',
+  //     'singular_name' => 'Event',
+  //   ],
+  //   'menu_icon' => 'dashicons-calendar',
+  //   'capability_type' => 'event',
+  //   'map_meta_cap' => true
+  // ]);
 }
 
 add_action('init', 'custom_post_types');

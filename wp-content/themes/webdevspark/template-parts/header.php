@@ -23,21 +23,24 @@
             <li <?php if (is_page('about') || wp_get_post_parent_id(get_the_ID()) === 5) echo 'class="current-menu-item"' ?>>
               <a href="<?= site_url('/about') ?>">About</a>
             </li>
+            <li <?php if (get_post_type() === 'project') echo 'class="current-menu-item"' ?>>
+              <a href="<?php echo get_post_type_archive_link('project') ?>">Projects</a>
+            </li>
             <li <?php if (get_post_type() === 'language') echo 'class="current-menu-item"' ?>>
               <a href="<?php echo get_post_type_archive_link('language') ?>">Languages</a>
+            </li>
+            <li <?php if (get_post_type() === 'post') echo 'class="current-menu-item"' ?>>
+              <a href="<?= site_url('/blog') ?>">Blog</a>
             </li>
             <!-- <li <?php if (get_post_type() === 'program') echo 'class="current-menu-item"' ?>>
               <a href="<?php echo get_post_type_archive_link('program') ?>">Programs</a>
             </li> -->
-            <li <?php if (get_post_type() === 'event' || is_page('past-events')) echo 'class="current-menu-item"' ?>>
+            <!-- <li <?php if (get_post_type() === 'event' || is_page('past-events')) echo 'class="current-menu-item"' ?>>
               <a href="<?php echo get_post_type_archive_link('event') ?>">Events</a>
-            </li>
+            </li> -->
             <!-- <li <?php if (is_page('campuses') || wp_get_post_parent_id(get_the_ID()) === 5) echo 'class="current-menu-item"' ?>>
               <a href="<?= site_url('/campuses') ?>">Campuses</a>
             </li> -->
-            <li <?php if (get_post_type() === 'post') echo 'class="current-menu-item"' ?>>
-              <a href="<?= site_url('/blog') ?>">Blog</a>
-            </li>
           </ul>
         </nav>
         <div class="site-header__util">
