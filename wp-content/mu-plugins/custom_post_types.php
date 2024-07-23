@@ -1,6 +1,6 @@
 <?php
 
-function university_post_types() {
+function custom_post_types() {
   // Event Post Type
   register_post_type('event', [
     'public' => true,
@@ -21,20 +21,20 @@ function university_post_types() {
     'map_meta_cap' => true
   ]);
 
-  // Program Post Type
-  register_post_type('program', [
+  // Language Post Type
+  register_post_type('language', [
     'public' => true,
     'show_in_rest' => true,
     'has_archive' => true,
-    'rewrite' => array('slug' => 'programs'),
+    'rewrite' => array('slug' => 'languages'),
     'supports' => array('title'),
     'labels' => array(
-      'name' => 'Programs',
-      'add_new' => 'Add New Program',
-      'add_new_item' => 'Add New Program',
-      'edit_item' => 'Edit Program',
-      'all_items' => 'All Programs',
-      'singular_name' => 'Program'
+      'name' => 'Languages',
+      'add_new' => 'Add New Language',
+      'add_new_item' => 'Add New Language',
+      'edit_item' => 'Edit Language',
+      'all_items' => 'All Languages',
+      'singular_name' => 'Language'
     ),
     'menu_icon' => 'dashicons-awards'
   ]);
@@ -90,6 +90,25 @@ function university_post_types() {
     'menu_icon' => 'dashicons-heart',
     "show_ui" => true,
   ]);
+
+  // --------------------------------
+  // // Program Post Type
+  // register_post_type('program', [
+  //   'public' => true,
+  //   'show_in_rest' => true,
+  //   'has_archive' => true,
+  //   'rewrite' => array('slug' => 'programs'),
+  //   'supports' => array('title'),
+  //   'labels' => array(
+  //     'name' => 'Programs',
+  //     'add_new' => 'Add New Program',
+  //     'add_new_item' => 'Add New Program',
+  //     'edit_item' => 'Edit Program',
+  //     'all_items' => 'All Programs',
+  //     'singular_name' => 'Program'
+  //   ),
+  //   'menu_icon' => 'dashicons-awards'
+  // ]);  
 }
 
-add_action('init', 'university_post_types');
+add_action('init', 'custom_post_types');
