@@ -52,31 +52,34 @@ function displayBlogPosts() {
 ?>
 
 <div class="page-banner">
-  <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/library-hero.jpg') ?>)"></div>
-  <div class="page-banner__content container t-center c-white">
-    <h1 class="headline headline--large">Welcome!</h1>
-    <h2 class="headline headline--medium">We think you&rsquo;ll like it here.</h2>
-    <h3 class="headline headline--small">Why don&rsquo;t you check out the <strong>major</strong> you&rsquo;re interested in?</h3>
-    <a href="<?php echo get_post_type_archive_link('program') ?>" class="btn btn--large btn--blue">Find Your Major</a>
+  <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/hero-image.jpg') ?>)"></div>
+  <div class="page-banner__content container t-center c-white flex flex-col">
+    <h1 class="headline headline--large">Hi, I&rsquo;m Samuel Lau!</h1>
+    <h2 class="headline headline--medium">WebDevSpark highlights my projects, primarily focused on React and WordPress.</h2>
+    <h3 class="headline headline--small">Explore the various projects I've completed.</h3>
+    <div class='mt-4'>
+      <a href="<?php echo get_post_type_archive_link('program') ?>" class="btn btn--large bg-primary-500 hover:-translate-y-2 duration-200">My Projects</a>
+    </div>
   </div>
 </div>
 
-<div class="full-width-split group">
+<div class="full-width-split group bg-black text-white">
   <div class="full-width-split__one">
-    <div class="full-width-split__inner">
-      <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
+    <div class="full-width-split__inner py-4 px-6 flex flex-col h-full border border-white rounded-md">
+      <h2 class="headline headline--small-plus t-center">Recent Projects</h2>
       <?php displayUpcomingEvents(); ?>
-      <p class="t-center no-margin">
-        <a href="<?php echo site_url('/events') ?>" class="btn btn--blue">View All Events</a>
+      <p class="mt-auto self-center">
+        <a href="<?php echo site_url('/events') ?>" class="btn bg-primary-500 hover:-translate-y-2 duration-200">View All Projects</a>
       </p>
     </div>
   </div>
+
   <div class="full-width-split__two">
-    <div class="full-width-split__inner">
-      <h2 class="headline headline--small-plus t-center">From Our Blogs</h2>
+    <div class="full-width-split__inner py-4 px-6 flex flex-col h-full border border-white rounded-md">
+      <h2 class="headline headline--small-plus t-center">Latest Posts</h2>
       <?php displayBlogPosts(); ?>
-      <p class="t-center no-margin">
-        <a href="<?php echo site_url('/blog') ?>" class="btn btn--yellow">View All Blog Posts</a>
+      <p class="mt-auto self-center">
+        <a href="<?php echo site_url('/blog') ?>" class="btn bg-secondary-700 hover:-translate-y-2 duration-200">View All Posts</a>
       </p>
     </div>
   </div>
