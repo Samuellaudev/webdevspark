@@ -1,10 +1,6 @@
 <?php
 get_template_part('template-parts/header');
-
-$args = [
-  'subtitle' => 'Learn how the school of your dreams got started.'
-];
-pageBanner($args);
+pageBanner();
 
 while (have_posts()) {
   the_post(); ?>
@@ -24,7 +20,6 @@ while (have_posts()) {
       </div>
     <?php } ?>
 
-
     <?php
     // Retrieve an array of child pages of the current post
     $childPageData = get_pages([
@@ -35,7 +30,7 @@ while (have_posts()) {
     if ($theParent || $childPageData) { ?>
       <div class="page-links">
         <h2 class="page-links__title">
-          <a href="<?php echo site_url('about-us') ?>"><?php echo get_the_title($theParent) ?></a>
+          <a href="<?php echo site_url('about') ?>"><?php echo get_the_title($theParent) ?></a>
         </h2>
         <ul class="min-list">
           <?php
