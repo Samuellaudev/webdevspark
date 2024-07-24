@@ -10,18 +10,19 @@ if ($project_date_field) {
 ?>
 
 <div class="project-summary">
-  <a class="project-summary__date text-center bg-primary-400 cursor-pointer" href="<?php the_permalink(); ?>">
-    <span class="project-summary__year">
-      <?php echo $project_date->format('Y') ?>
-    </span>
-    <span class="project-summary__month">
-      <?php echo $project_date->format('M') ?>
-    </span>
-  </a>
-  <div class="project-summary__content cursor-pointer">
-    <h5 class="project-summary__title headline headline--tiny">
+  <div class="project-summary__content cursor-pointer space-y-2 border-b-2 pb-2">
+    <h5 class="project-summary__title headline headline--small-plus rounded-md">
       <a href="<?php the_permalink(); ?>"><?php the_title() ?></a>
     </h5>
+    <a class="project-summary__date flex items-center space-x-2 rounded-md text-center cursor-pointer" href="<?php the_permalink(); ?>">
+      <span>Project Date:</span>
+      <span class="project-summary__year">
+        <?php echo $project_date->format('Y') ?>
+      </span>
+      <span class="project-summary__month">
+        <?php echo $project_date->format('M') ?>
+      </span>
+    </a>
     <p class="flex flex-col">
       <?php
       if (has_excerpt()) {

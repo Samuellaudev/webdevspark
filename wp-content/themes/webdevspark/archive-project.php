@@ -8,6 +8,8 @@ $args = [
 pageBanner($args);
 
 function displayProjects($query = null) {
+  $counter = 0;
+
   if (!$query) {
     global $wp_query;
     $query = $wp_query;
@@ -15,7 +17,15 @@ function displayProjects($query = null) {
 
   while ($query->have_posts()) {
     $query->the_post();
+    $counter++;
+
+    if ($counter % 2 === 0) {
+      echo '<div class="event-project">';
+    } else {
+      echo '<div class="odd-project">';
+    }
     get_template_part('template-parts/content', 'projects');
+    echo '</div>';
   }
 }
 ?>

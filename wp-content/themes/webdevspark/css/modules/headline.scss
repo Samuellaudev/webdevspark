@@ -16,7 +16,7 @@
   }
 
   &--medium {
-    font-size: 1.9rem;
+    font-size: 1.8rem;
     margin-bottom: 0.75rem;
     @include atSmall {
       font-size: 3.125rem;
@@ -27,7 +27,6 @@
     font-family: "Roboto", sans-serif;
     font-size: 1.6875rem;
     font-weight: 400;
-    // margin-bottom: 1.9rem;
   }
 
   &--small {

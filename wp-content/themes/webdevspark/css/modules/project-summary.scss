@@ -1,28 +1,27 @@
 .project-summary {
-  position: relative;
-  padding-left: 107px;
   min-height: 77px;
   padding-bottom: 1px;
   margin-bottom: 20px;
+
+  &__title {
+    display: inline-block;
+    padding: 8px;
+    color: #FFF;
+    border: 1px solid black;
+  }
 
   &__title a {
     font-weight: 500;
   }
 
+  &__title:hover {
+    opacity: .75;
+  }
+
   &__date {
     text-decoration: none;
-    display: block;
-    top: 0;
-    left: 0;
-    position: absolute;
-    padding: 14px 0 11px 0;
-    color: #FFF;
-    border-radius: 10%;
-    background-color: $mainBlue;
-    width: 80px;
-    line-height: 1;
-    transition: opacity .33s;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, .22);
+    display: inline-block;
+    width: 170px;
   }
 
   &__date:hover {
@@ -33,16 +32,26 @@
     background-color: $mainYellow;
   }
 
-  &__year {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: 300;
-    text-transform: uppercase;
-  }
-
+  &__year,
   &__month {
     display: block;
-    font-size: 2.02rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  &__year {
+    text-transform: uppercase;
+  }
+}
+
+.odd-project {
+  .project-summary__title {
+    background-color: #fb923c; // bg-primart-500
+  }
+}
+
+.event-project {
+  .project-summary__title {
+    background-color: #166534; // bg-secondary-800
   }
 }
