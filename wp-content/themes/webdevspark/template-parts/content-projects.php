@@ -10,19 +10,22 @@ if ($project_date_field) {
 ?>
 
 <div class="project-summary">
-  <div class="project-summary__content cursor-pointer space-y-2 border-b-2 pb-2">
-    <h5 class="project-summary__title headline headline--small-plus rounded-md">
+  <div class='project-summary__content space-y-2 p-2 -translate-x-2 -translate-y-2 border-2 border-transparent hover:translate-x-0.5 hover:translate-y-0.5 hover:border-white rounded-md duration-200 <?php if (!is_front_page()) echo 'hover:border-black' ?>'>
+    <h5 class="project-summary__title headline headline--small-plus rounded-md cursor-pointer <?php if (is_front_page()) echo 'p-0' ?>">
       <a href="<?php the_permalink(); ?>"><?php the_title() ?></a>
     </h5>
-    <a class="project-summary__date flex items-center space-x-2 rounded-md text-center cursor-pointer" href="<?php the_permalink(); ?>">
-      <span>Project Date:</span>
-      <span class="project-summary__year">
-        <?php echo $project_date->format('Y') ?>
-      </span>
-      <span class="project-summary__month">
-        <?php echo $project_date->format('M') ?>
-      </span>
-    </a>
+    <?php if (!is_front_page()) : ?>
+      <a class="project-summary__date flex items-center space-x-2 rounded-md text-center cursor-pointer" href="<?php the_permalink(); ?>">
+        <span>Project Date:</span>
+        <span class="project-summary__year">
+          <?php echo $project_date->format('Y') ?>
+        </span>
+        <span class="project-summary__month">
+          <?php echo $project_date->format('M') ?>
+        </span>
+      </a>
+    <?php endif; ?>
+
     <p class="flex flex-col">
       <?php
       if (has_excerpt()) {
