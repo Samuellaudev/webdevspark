@@ -48,11 +48,28 @@
   }
 
   &--post-title a {
-    color: $mainBlue;
+    color: $mainOrange;
     text-decoration: none;
   }
 
   &--post-title a:hover {
     text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.odd-post {
+  .headline--post-title a {
+    color: $mainOrange;
+  }
+}
+
+.event-post {
+  .headline--post-title a {
+    color: $secondaryGreen;
+  }
+
+  .btn {
+    background-color: $secondaryGreen;
   }
 }
