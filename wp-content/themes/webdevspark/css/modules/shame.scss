@@ -55,7 +55,7 @@
   color: #666;
 
   &:hover {
-    color: $mainBlue;
+    color: $mainOrange;
     text-decoration: underline;
   }
 }
@@ -86,7 +86,7 @@
   color: $darkOrange;
 }
 .c-blue {
-  color: $mainBlue;
+  color: $mainOrange;
 }
 .c-white {
   color: #fff;
@@ -134,23 +134,8 @@
 
 .social-icons-list li a:hover {
   opacity: 0.75;
-}
-
-.social-color-facebook {
-  background-color: #4862a3;
-}
-.social-color-twitter {
-  background-color: #55acee;
-}
-.social-color-youtube {
-  background-color: #cc1e1f;
-}
-.social-color-linkedin {
-  background-color: #0077b5;
-}
-.social-color-instagram {
-  background-color: #d8226b;
-}
+  cursor: pointer;
+} 
 
 .nav-list ul {
   padding: 0;
@@ -169,7 +154,7 @@
 }
 
 .nav-list a:hover {
-  color: $mainBlue;
+  color: $mainOrange;
   text-decoration: underline;
 }
 
@@ -257,7 +242,7 @@
   border: none;
   border-radius: 4px;
   outline: none;
-  background-color: $mainBlue;
+  background-color: $mainOrange;
   font-family: "Roboto", sans-serif;
   padding: 0 20px;
   margin-left: 10px;

@@ -46,12 +46,12 @@
 
 .odd-project {
   .project-summary__title {
-    background-color: #fb923c; // bg-primart-500
+    background-color: $mainOrange;
   }
 }
 
 .event-project {
   .project-summary__title {
-    background-color: #166534; // bg-secondary-800
+    background-color: $secondaryGreen;
   }
 }
