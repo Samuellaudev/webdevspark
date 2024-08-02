@@ -3,6 +3,7 @@
   z-index: 1;
   background-color: $beige;
   margin: 0 0 40px 0;
+  cursor: pointer;
   @include atSmallMedium {
     margin: 0 0 40px 20px;
     width: 300px;
