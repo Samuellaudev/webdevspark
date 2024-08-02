@@ -10,7 +10,7 @@ if ($project_date_field) {
 ?>
 
 <div class="project-summary">
-  <div class='project-summary__content space-y-2 p-2 -translate-x-2 -translate-y-2 border-2 border-transparent hover:translate-x-0.5 hover:translate-y-0.5 hover:border-white rounded-md duration-200 <?php if (!is_front_page()) echo 'hover:border-black' ?>'>
+  <div class='project-summary__content space-y-2 p-2 -translate-x-2 -translate-y-2 border-2 border-transparent hover:translate-x-0.5 hover:translate-y-0.5 rounded-md duration-200 <?php echo !is_front_page() ? 'hover:border-black' : 'hover:border-white' ?>'>
     <h5 class="project-summary__title headline headline--small-plus rounded-md cursor-pointer <?php if (is_front_page()) echo 'p-0' ?>">
       <a href="<?php the_permalink(); ?>"><?php the_title() ?></a>
     </h5>

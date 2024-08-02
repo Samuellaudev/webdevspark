@@ -26,8 +26,8 @@ $counter = 0;
       </h2>
       <div class="metabox">
         <p class="inner-content">
-          Posted by <span class="hover:cursor-pointer"><?php the_author_posts_link() ?></span>
-          on <?php the_time('M j, Y') ?>
+          <span class="hidden sm:inline hover:cursor-pointer">Posted by <?php the_author_posts_link() ?></span>
+          <span class="hidden sm:inline">on</span> <?php the_time('M j, Y') ?>
           in <span class="hover:cursor-pointer"><?= get_the_category_list(', ') ?></span>
         </p>
       </div>
