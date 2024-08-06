@@ -28,7 +28,7 @@ $socialLinks = [
         </h1>
       </div>
 
-      <div class="site-footer__col-two-three-group">
+      <div class="site-footer__col-two-three-group pt-5 sm:pt-0">
         <div class="site-footer__col-two">
           <h3 class="headline headline--small">Explore</h3>
           <nav class="nav-list">
@@ -53,11 +53,11 @@ $socialLinks = [
         <nav>
           <ul class="min-list social-icons-list group py-2">
             <?php foreach ($socialLinks as $item) : ?>
-              <li>
-                <a class="<?php echo $item['class'] ?>" href="<?php echo $item['href'] ?>">
-                  <img src="<?php echo get_theme_file_uri($item['src']) ?>" alt='GitHub' class="w-5">
-                </a>
-              </li>
+            <li>
+              <a class="<?php echo $item['class'] ?>" href="<?php echo $item['href'] ?>">
+                <img class="w-5 mx-auto sm:mx-0" alt='GitHub' src="<?php echo get_theme_file_uri($item['src']) ?>">
+              </a>
+            </li>
             <?php endforeach; ?>
 
           </ul>
