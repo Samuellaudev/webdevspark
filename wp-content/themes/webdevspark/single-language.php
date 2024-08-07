@@ -35,7 +35,8 @@ while (have_posts()) :
   <div class="metabox metabox--position-up metabox--with-home-link">
     <p>
       <a class="metabox__blog-home-link cursor-pointer" href="<?= get_post_type_archive_link('language') ?>">
-        <i class="fa fa-home" aria-hidden="true"></i> All Languages
+        <i class="fa fa-home" aria-hidden="true"></i>
+        <span class="hidden sm:inline">All Languages</span>
       </a>
       <span class="metabox__main">
         <?php echo the_title() ?>

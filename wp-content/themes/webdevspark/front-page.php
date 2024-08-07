@@ -63,7 +63,7 @@ function displayBlogPosts() {
 
 <section class="page-banner">
   <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/hero-image.jpg') ?>)"></div>
-  <div class="page-banner__content container t-center c-white flex flex-col py-20">
+  <div class="page-banner__content container t-center c-white flex flex-col py-16 md:py-28">
     <h1 class="headline text-5xl sm:text-7xl pt-12 sm:pt-16">Hi, I&rsquo;m Samuel Lau!</h1>
     <h2 class="headline text-3xl sm:text-4xl py-7">WebDevSpark, a website primarily focused on topics related to React and WordPress.</h2>
     <h3 class="headline text-xl sm:text-2xl">Explore the various projects I've completed.</h3>
