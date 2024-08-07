@@ -25,7 +25,7 @@ while (have_posts()) :
     </p>
   </div>
   <div class="project-info border-b-2 border-b-gray-100 pb-4">
-    <div class="flex items-center space-x-4">
+    <div class="flex items-center space-x-4 pt-4 sm:pt-0">
       <span>GitHub Repository: </span>
       <a class="GitHub URL" href="<?php echo $githubUrl ?>" target="_blank">
         <img class="w-6 hover:cursor-pointer hover:opacity-75" alt='GitHub' src="<?php echo get_theme_file_uri('/images/svg/icon-github.svg') ?>">

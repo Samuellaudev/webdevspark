@@ -17,7 +17,7 @@ $changeBorderColor = !is_front_page() ? 'hover:border-black' : 'hover:border-whi
       <a href="<?php the_permalink(); ?>" class="hover:text-white"><?php the_title() ?></a>
     </h5>
     <?php if (!is_front_page()) : ?>
-    <a class="project-summary__date flex items-center space-x-2 rounded-md text-center cursor-pointer" href="<?php the_permalink(); ?>">
+    <a class="project-summary__date flex items-center space-x-1 rounded-md text-center cursor-pointer" href="<?php the_permalink(); ?>">
       <span class="text-base">Project Date:</span>
       <span class="project-summary__year">
         <?php echo $project_date->format('Y') ?>

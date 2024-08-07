@@ -14,7 +14,8 @@
         <a href="<?php echo site_url() ?>"><strong>WebDev</strong>Spark</a>
       </h1>
       <!-- mobile menu -->
-      <span class="js-search-trigger site-header__search-trigger"><i class="fa fa-search" aria-hidden="true"></i></span>
+      <!-- To be uncommented after modification -->
+      <!-- <span class="js-search-trigger site-header__search-trigger"><i class="fa fa-search" aria-hidden="true"></i></span> -->
       <i class="site-header__menu-trigger fa fa-bars" aria-hidden="true"></i>
       <!-- desktop menu -->
       <div class="site-header__menu group">
