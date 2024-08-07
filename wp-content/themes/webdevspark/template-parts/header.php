@@ -8,7 +8,7 @@
 </head>
 
 <body <?php body_class() ?>>
-  <header class="site-header">
+  <header class="site-header fixed mx-auto border border-[#33353F] bg-[#121212] bg-opacity-80 backdrop-blur-md backdrop-opacity-80 z-[100]">
     <div class="container">
       <h1 class="school-logo-text float-left">
         <a href="<?php echo site_url() ?>"><strong>WebDev</strong>Spark</a>

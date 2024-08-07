@@ -64,11 +64,11 @@ function displayBlogPosts() {
 <section class="page-banner">
   <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/hero-image.jpg') ?>)"></div>
   <div class="page-banner__content container t-center c-white flex flex-col py-20">
-    <h1 class="headline headline--large">Hi, I&rsquo;m Samuel Lau!</h1>
-    <h2 class="headline headline--medium">WebDevSpark, a website primarily focused on topics related to React and WordPress.</h2>
-    <h3 class="headline headline--small">Explore the various projects I've completed.</h3>
+    <h1 class="headline text-5xl sm:text-7xl pt-0 sm:pt-16">Hi, I&rsquo;m Samuel Lau!</h1>
+    <h2 class="headline text-3xl sm:text-4xl py-4">WebDevSpark, a website primarily focused on topics related to React and WordPress.</h2>
+    <h3 class="headline text-xl sm:text-2xl">Explore the various projects I've completed.</h3>
     <div class='mt-10'>
-      <a href="<?php echo get_post_type_archive_link('project') ?>" class="btn btn--large bg-primary-500 hover:-translate-y-2 duration-200">My Projects</a>
+      <a href="<?php echo get_post_type_archive_link('project') ?>" class="btn btn--large py-2 px-4 bg-primary-500 hover:-translate-y-2 duration-200">My Projects</a>
     </div>
   </div>
 </section>
@@ -76,7 +76,7 @@ function displayBlogPosts() {
 <section class="full-width-split group bg-black text-white py-10">
   <div class="full-width-split__one">
     <div class="full-width-split__inner py-10 px-6 flex flex-col h-full border border-white rounded-md">
-      <h2 class="headline headline--small-plus t-center mx-auto px-4 py-2 mt-2 mb-4 border-2 border-white rounded-md">Recent Projects</h2>
+      <h2 class="headline headline--small-plus t-center mx-auto px-4 py-2 mt-2 mb-10 border-2 border-white rounded-md">Recent Projects</h2>
       <?php displayRecentProjects(); ?>
       <p class="mt-auto self-center">
         <a href="<?php echo site_url('/projects') ?>" class="btn bg-primary-500 hover:-translate-y-2 duration-200">View All Projects</a>
@@ -86,7 +86,7 @@ function displayBlogPosts() {
 
   <div class="full-width-split__two">
     <div class="full-width-split__inner py-10 px-6 flex flex-col h-full border border-white rounded-md">
-      <h2 class="headline headline--small-plus t-center mx-auto px-4 py-2 mt-2 mb-4 border-2 border-white rounded-md">Latest Posts</h2>
+      <h2 class="headline headline--small-plus t-center mx-auto px-4 py-2 mt-2 mb-10 border-2 border-white rounded-md">Latest Posts</h2>
       <?php displayBlogPosts(); ?>
       <p class="mt-auto self-center">
         <a href="<?php echo site_url('/blog') ?>" class="btn bg-secondary-700 hover:-translate-y-2 duration-200">View All Posts</a>
@@ -100,17 +100,17 @@ function displayBlogPosts() {
     <h1 class="text-4xl font-semibold text-center text-white capitalize">Services</h1>
     <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-16 md:grid-cols-2 xl:grid-cols-3">
       <?php foreach ($items as $item) : ?>
-        <div class="flex flex-col items-center p-6 space-y-3 text-center bg-black rounded-xl">
-          <span class="inline-block p-3 text-white bg-primary-500 rounded-full">
-            <?php echo $item['icon'] ?>
-          </span>
-          <h1 class="text-xl font-semibold text-white capitalize px-4">
-            <?php echo $item['title'] ?>
-          </h1>
-          <p class="text-gray-300">
-            <?php echo $item['text'] ?>
-          </p>
-        </div>
+      <div class="flex flex-col items-center p-6 space-y-3 text-center bg-black rounded-xl">
+        <span class="inline-block p-3 text-white bg-primary-500 rounded-full">
+          <?php echo $item['icon'] ?>
+        </span>
+        <h1 class="text-xl font-semibold text-white capitalize px-4">
+          <?php echo $item['title'] ?>
+        </h1>
+        <p class="text-gray-300">
+          <?php echo $item['text'] ?>
+        </p>
+      </div>
       <?php endforeach; ?>
     </div>
   </div>
