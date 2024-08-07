@@ -9,30 +9,32 @@ $childPageData = get_pages([
   'child_of' => get_the_ID()
 ]);
 
+$checkIfChildPage = is_page() && $post->post_parent;
+
 while (have_posts()) :
   the_post(); ?>
-  <div class="container container--narrow page-section">
-    <?php if ($theParent) : ?>
-      <div class="metabox metabox--position-up metabox--with-home-link">
-        <p>
-          <a class="metabox__blog-home-link" href="<?php echo get_permalink($theParent) ?>">
-            <i class="fa fa-home" aria-hidden="true"></i> Back to <?php echo get_the_title($theParent) ?>
-          </a>
-          <span class="metabox__main"><?php echo the_title() ?>
-          </span>
-        </p>
-      </div>
-    <?php endif; ?>
+<div class="container container--narrow page-section">
+  <?php if ($theParent) : ?>
+  <div class="metabox metabox--position-up metabox--with-home-link">
+    <p>
+      <a class="metabox__blog-home-link" href="<?php echo get_permalink($theParent) ?>">
+        <i class="fa fa-home" aria-hidden="true"></i> Back to <?php echo get_the_title($theParent) ?>
+      </a>
+      <span class="metabox__main"><?php echo the_title() ?>
+      </span>
+    </p>
+  </div>
+  <?php endif; ?>
 
-    <!-- Check if the current post has a parent or if it has child pages -->
-    <?php if ($theParent || $childPageData) : ?>
-      <div class="page-links">
-        <h2 class="page-links__title">
-          <a href="<?php echo site_url('about') ?>"><?php echo get_the_title($theParent) ?></a>
-        </h2>
-        <ul class="min-list">
-          <!-- Determine the ID of the post whose children should be listed -->
-          <?php
+  <!-- Check if the current post has a parent or if it has child pages -->
+  <?php if ($theParent || $childPageData) : ?>
+  <div class="page-links <?php if ($checkIfChildPage) echo 'hidden md:block'; ?>">
+    <h2 class="page-links__title">
+      <a href="<?php echo site_url('about') ?>"><?php echo get_the_title($theParent) ?></a>
+    </h2>
+    <ul class="min-list">
+      <!-- Determine the ID of the post whose children should be listed -->
+      <?php
           if ($theParent) {
             $findChildrenOf = $theParent;
           } else {
@@ -46,14 +48,14 @@ while (have_posts()) :
             'sort_column' => 'menu_order'
           ])
           ?>
-        </ul>
-      </div>
-    <?php endif; ?>
-
-    <div class="generic-content">
-      <?php the_content() ?>
-    </div>
+    </ul>
   </div>
+  <?php endif; ?>
+
+  <div class="generic-content <?php if ($checkIfChildPage) echo 'mt-10 md:mt-0'; ?>">
+    <?php the_content() ?>
+  </div>
+</div>
 
 <?php
 endwhile;
