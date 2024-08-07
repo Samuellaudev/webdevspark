@@ -4,6 +4,10 @@ pageBanner();
 
 $relatedLanguages = get_field('related_languages');
 
+$githubUrl = get_field('project_github');
+
+$projectUrl = get_field('project_url');
+
 while (have_posts()) :
   the_post();
 ?>
@@ -19,6 +23,24 @@ while (have_posts()) :
         <?php echo the_title() ?>
       </span>
     </p>
+  </div>
+  <div class="project-info border-b-2 border-b-gray-100 pb-4">
+    <div class="flex items-center space-x-4">
+      <span>GitHub Repository: </span>
+      <a class="GitHub URL" href="<?php echo $githubUrl ?>" target="_blank">
+        <img class="w-6 hover:cursor-pointer hover:opacity-75" alt='GitHub' src="<?php echo get_theme_file_uri('/images/svg/icon-github.svg') ?>">
+      </a>
+    </div>
+    <?php if ($projectUrl) : ?>
+    <div class="flex items-center space-x-4">
+      <span>Project URL: </span>
+      <a class="Project URL" href="<?php echo $projectUrl ?>" target="_blank">
+        <span class="opacity-50 hover:cursor-pointer hover:opacity-30">
+          <img class="w-6" alt='link' src="<?php echo get_theme_file_uri('/images/svg/icon-link.svg') ?>">
+        </span>
+      </a>
+    </div>
+    <?php endif; ?>
   </div>
   <div class="generic-content">
     <?php the_content() ?>
