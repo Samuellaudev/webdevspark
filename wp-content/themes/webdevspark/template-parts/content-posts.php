@@ -13,7 +13,7 @@ $post_date = new DateTime(get_the_date('Y-m-d'));
   </a>
   <div class="post-summary__content p-2 -translate-x-2 -translate-y-2 border-2 border-transparent hover:translate-x-0.5 hover:translate-y-0.5 hover:border-white rounded-md duration-200">
     <h5 class="post-summary__title headline headline--tiny cursor-pointer">
-      <a href="<?php the_permalink(); ?>"><?php the_title() ?></a>
+      <a href="<?php the_permalink(); ?>" class="hover:text-white"><?php the_title() ?></a>
     </h5>
     <p>
       <?php
