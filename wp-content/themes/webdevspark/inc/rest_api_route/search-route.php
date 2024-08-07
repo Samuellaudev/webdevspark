@@ -7,7 +7,9 @@ function universityRegisterSearch() {
   register_rest_route('university/v1', 'search', [
     'methods' => 'GET',
     'callback' => 'universitySearchResults',
-    'permission_callback' => 'is_user_logged_in'
+    'permission_callback' => function () {
+      return true;
+    }
   ]);
 }
 

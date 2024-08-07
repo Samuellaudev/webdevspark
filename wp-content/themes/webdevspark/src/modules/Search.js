@@ -3,7 +3,8 @@ import axios from 'axios';
 class Search {
   // 1. Describe and initiate our object
   constructor() {
-    this.addSearchHTML();
+    // To be uncommented after modification
+    // this.addSearchHTML();
 
     this.openButtons = document.querySelectorAll(".js-search-trigger");
     this.closeButton = document.querySelector(".search-overlay .search-overlay__close");
