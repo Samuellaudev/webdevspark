@@ -26,3 +26,13 @@ function wpdocs_custom_excerpt_length($length) {
   return 20;
 }
 add_filter('excerpt_length', 'wpdocs_custom_excerpt_length', 999);
+
+/**
+ * Remove the WordPress version from the HTML head.
+ *
+ * @return string An empty string to remove the version.
+ */
+function remove_version() {
+  return '';
+}
+add_filter('the_generator', 'remove_version');

@@ -28,7 +28,9 @@ class Search {
     this.openButtons.forEach(btn => {
       btn.addEventListener("click", () => this.openOverlay());
     })
-    this.closeButton.addEventListener("click", () => this.closeOverlay());
+    if (this.closeButton) {
+      this.closeButton.addEventListener("click", () => this.closeOverlay());
+    }
     document.addEventListener('keydown', e => this.keyPressDispatcher(e))
     if (this.searchField) {
       this.searchField.addEventListener('keyup', () => this.typingLogic());
@@ -153,7 +155,7 @@ class Search {
           </a>
           <div class="event-summary__content">
             <h5 class="event-summary__title headline headline--tiny">
-              <a href="${event.permalink}>">${event.title}</a>
+              <a href="${event.permalink}">${event.title}</a>
             </h5>
             <p>
               ${event.description}
