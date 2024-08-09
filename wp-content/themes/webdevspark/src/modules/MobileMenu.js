@@ -6,13 +6,17 @@ class MobileMenu {
   }
 
   events() {
-    this.openButton.addEventListener("click", () => this.openMenu())
+    if (this.openButton && this.menu) {
+      this.openButton.addEventListener("click", () => this.openMenu())
+    }
   }
 
   openMenu() {
-    this.openButton.classList.toggle("fa-bars")
-    this.openButton.classList.toggle("fa-window-close")
-    this.menu.classList.toggle("site-header__menu--active")
+    if (this.openButton && this.menu) {
+      this.openButton.classList.toggle("fa-bars")
+      this.openButton.classList.toggle("fa-window-close")
+      this.menu.classList.toggle("site-header__menu--active")
+    }
   }
 }
 

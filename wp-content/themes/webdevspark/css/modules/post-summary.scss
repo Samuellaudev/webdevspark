@@ -5,6 +5,11 @@
   padding-bottom: 1px;
   margin-bottom: 20px;
 
+  &__title {
+    color: #FFF;
+    text-decoration: none;
+  }
+
   &__title a {
     font-weight: 500;
   }

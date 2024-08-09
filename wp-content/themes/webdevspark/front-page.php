@@ -62,13 +62,24 @@ function displayBlogPosts() {
 ?>
 
 <section class="page-banner">
-  <div class="page-banner__bg-image" style="background-image: url(<?php echo get_theme_file_uri('/images/hero-image.jpg') ?>)"></div>
-  <div class="page-banner__content container t-center c-white flex flex-col py-16 md:py-28">
-    <h1 class="headline text-5xl sm:text-7xl pt-12 sm:pt-16">Hi, I&rsquo;m Samuel Lau!</h1>
-    <h2 class="headline text-3xl sm:text-4xl py-7">WebDevSpark, a website primarily focused on topics related to React and WordPress.</h2>
-    <h3 class="headline text-xl sm:text-2xl">Explore the various projects I've completed.</h3>
-    <div class='mt-10'>
-      <a href="<?php echo get_post_type_archive_link('project') ?>" class="btn btn--large py-2 px-4 bg-primary-500 hover:-translate-y-2 duration-200">My Projects</a>
+  <div class="flex flex-col sm:flex-row">
+    <div class="page-banner__content container t-center c-white flex flex-col py-16 md:py-28 md:pl-20">
+      <h1 class="headline text-5xl sm:text-7xl ">Hi, I&rsquo;m Samuel Lau!</h1>
+      <h2 class="headline text-3xl sm:text-4xl py-7">WebDevSpark, a website primarily focused on topics related to React and WordPress.</h2>
+      <h3 class="headline text-xl sm:text-2xl">Explore the various projects I've completed.</h3>
+      <div class='mt-10'>
+        <a href="<?php echo get_post_type_archive_link('project') ?>" class="btn btn--large py-2 px-4 bg-primary-500 hover:-translate-y-2 duration-200">My Projects</a>
+      </div>
+    </div>
+    <div class="flex justify-center items-center p-10 sm:p-24">
+      <div class="relative">
+        <span class="absolute top-0 left-0 w-full h-full mt-2.5 ml-2.5 sm:mt-4 sm:ml-4 bg-gray-700 rounded-md"></span>
+        <div class="relative bg-gray-700 border-4 border-gray-700 rounded-md hover:scale-110 transition duration-300">
+          <div class='flex items-center '>
+            <img src="<?php echo get_theme_file_uri('/images/hero-image.jpg') ?>" alt="Hero Image">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -100,17 +111,17 @@ function displayBlogPosts() {
     <h1 class="text-4xl font-semibold text-center text-white capitalize">Services</h1>
     <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-16 md:grid-cols-2 xl:grid-cols-3">
       <?php foreach ($items as $item) : ?>
-      <div class="flex flex-col items-center p-6 space-y-3 text-center bg-black rounded-xl">
-        <span class="inline-block p-3 text-white bg-primary-500 rounded-full">
-          <?php echo $item['icon'] ?>
-        </span>
-        <h1 class="text-xl font-semibold text-white capitalize px-4">
-          <?php echo $item['title'] ?>
-        </h1>
-        <p class="text-gray-300">
-          <?php echo $item['text'] ?>
-        </p>
-      </div>
+        <div class="flex flex-col items-center p-6 space-y-3 text-center bg-black rounded-xl">
+          <span class="inline-block p-3 text-white bg-primary-500 rounded-full">
+            <?php echo $item['icon'] ?>
+          </span>
+          <h1 class="text-xl font-semibold text-white capitalize px-4">
+            <?php echo $item['title'] ?>
+          </h1>
+          <p class="text-gray-300">
+            <?php echo $item['text'] ?>
+          </p>
+        </div>
       <?php endforeach; ?>
     </div>
   </div>
