@@ -10,6 +10,14 @@
 
 .wp-block-code {
   margin: 1rem 0;
+  background-color: black;
+  color: white;
+
+  code {
+    background-color: black;
+    padding: 1rem;
+    font-size: medium;
+  }
 }
 
 .wp-block-heading {

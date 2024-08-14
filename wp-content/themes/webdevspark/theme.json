@@ -17,6 +17,24 @@
           "text": "#FFFFFF",
           "background": "var(--wp--preset--color--primary)"
         }
+      },
+      "core/code": {
+        "color": {
+          "background": "var(--wp--preset--color--contrast)",
+          "text": "var(--wp--preset--color--base)"
+        },
+        "css": "& code {overflow-wrap: normal; overflow-x: scroll; tab-size: 4; white-space: pre !important;}",
+        "spacing": {
+          "padding": {
+            "top": "var(--wp--custom--spacing--gap)",
+            "right": "var(--wp--custom--spacing--gap)",
+            "bottom": "var(--wp--custom--spacing--gap)",
+            "left": "var(--wp--custom--spacing--gap)"
+          }
+        },
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--small)"
+        }
       }
     },
     "elements": {
