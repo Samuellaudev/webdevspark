@@ -73,9 +73,9 @@ function displayBlogPosts() {
     </div>
     <div class="flex justify-center items-center p-10 sm:p-24">
       <div class="relative">
-        <span class="absolute top-0 left-0 w-full h-full mt-2.5 ml-2.5 sm:mt-4 sm:ml-4 bg-gray-700 rounded-md"></span>
-        <div class="relative bg-gray-700 border-4 border-gray-700 rounded-md hover:scale-110 transition duration-300">
-          <div class='flex items-center '>
+        <span class="absolute top-0 left-0 w-full h-full mt-2.5 ml-2.5 sm:mt-5 sm:ml-5 bg-gray-700 rounded-md"></span>
+        <div class="relative hover:scale-110 transition duration-300">
+          <div class='flex items-center'>
             <img src="<?php echo get_theme_file_uri('/images/hero-image.jpg') ?>" alt="Hero Image">
           </div>
         </div>
