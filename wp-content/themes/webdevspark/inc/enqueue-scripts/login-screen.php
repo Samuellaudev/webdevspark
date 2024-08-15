@@ -30,4 +30,17 @@ function customLoginStyles() {
   wp_enqueue_style('university_extra_styles', get_theme_file_uri('/build/index.css'));
 }
 
+/**
+ * Customize the login URL.
+ *
+ * @param string $login_url The default login URL.
+ * @return string Modified login URL.
+ */
 add_action('login_enqueue_scripts', 'customLoginStyles');
+
+function custom_login_url($login_url) {
+  $login_url = site_url('user_portal.php', 'login');
+  return $login_url;
+}
+
+add_filter('login_url', 'custom_login_url', PHP_INT_MAX);
