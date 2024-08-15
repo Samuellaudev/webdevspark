@@ -1,0 +1,17 @@
+.cards-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem;
+  max-width: 800px;
+
+  .card {
+    min-width: 200px;
+    height: 400px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    margin: 0 10px;
+  }
+}

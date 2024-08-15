@@ -62,24 +62,21 @@ function displayBlogPosts() {
 ?>
 
 <section class="page-banner">
-  <div class="flex flex-col sm:flex-row">
-    <div class="page-banner__content container t-center c-white flex flex-col py-16 md:py-28 md:pl-20">
-      <h1 class="headline text-5xl sm:text-7xl ">Hi, I&rsquo;m Samuel Lau!</h1>
-      <h2 class="headline text-3xl sm:text-4xl py-7">WebDevSpark, a website primarily focused on topics related to React and WordPress.</h2>
-      <h3 class="headline text-xl sm:text-2xl">Explore the various projects I've completed.</h3>
-      <div class='mt-10'>
-        <a href="<?php echo get_post_type_archive_link('project') ?>" class="btn btn--large py-2 px-4 bg-primary-500 hover:-translate-y-2 duration-200">My Projects</a>
-      </div>
-    </div>
-    <div class="flex justify-center items-center p-10 sm:p-24">
-      <div class="relative">
-        <span class="absolute top-0 left-0 w-full h-full mt-2.5 ml-2.5 sm:mt-5 sm:ml-5 bg-gray-700 rounded-md"></span>
-        <div class="relative hover:scale-110 transition duration-300">
-          <div class='flex items-center'>
-            <img src="<?php echo get_theme_file_uri('/images/hero-image.jpg') ?>" alt="Hero Image">
-          </div>
+  <div class="container flex flex-col sm:flex-row bg-cover bg-no-repeat" style="background-image: url(<?php echo get_theme_file_uri('/images/hero-image.jpg') ?>)">
+    <div class="relative z-0 page-banner__content container t-center c-white flex flex-col py-16 md:pl-10 w-full xl:py-24">
+      <div class="z-20 backdrop-blur-sm backdrop-brightness-75 rounded-md p-2 py-4">
+        <h1 class="headline text-5xl sm:text-7xl ">Hi, I&rsquo;m Samuel Lau!</h1>
+        <h2 class="headline text-3xl sm:text-4xl py-7">WebDevSpark, a website primarily focused on topics related to React and WordPress.</h2>
+        <h3 class="headline text-xl sm:text-2xl">Explore the various projects I've completed.</h3>
+        <div class='mt-10'>
+          <a href="<?php echo get_post_type_archive_link('project') ?>" class="btn btn--large py-2 px-4 bg-primary-500 hover:-translate-y-2 duration-200">My Projects</a>
         </div>
       </div>
+    </div>
+    <div class="cards-section w-full z-0 md:pt-20 p-10 md:p-0">
+      <div class="card card-left translate-x-12 md:translate-x-64 z-10 bg-cover border-2 border-white shadow-lg shadow-stone-500" style="background-image: url(<?= get_theme_file_uri('images/card-image/image-1.png') ?>)"></div>
+      <div class="card card-center z-20 bg-cover border-2 border-white shadow-lg shadow-stone-500" style="background-image: url(<?= get_theme_file_uri('images/card-image/image-3.png') ?>)"></div>
+      <div class="card card-right -translate-x-16 md:-translate-x-60 z-10 bg-cover border-2 border-white shadow-lg shadow-stone-500" style="background-image: url(<?= get_theme_file_uri('images/card-image/image-2.png') ?>)"></div>
     </div>
   </div>
 </section>
