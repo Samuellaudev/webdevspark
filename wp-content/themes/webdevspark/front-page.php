@@ -62,7 +62,7 @@ function displayBlogPosts() {
 ?>
 
 <section class="page-banner">
-  <div class="container flex flex-col sm:flex-row bg-cover bg-no-repeat" style="background-image: url(<?php echo get_theme_file_uri('/images/hero-image.jpg') ?>)">
+  <div class="container flex flex-col sm:flex-row bg-top md:bg-cover bg-no-repeat" style="background-image: url(<?php echo get_theme_file_uri('/images/hero-image.webp') ?>)">
     <div class="relative z-0 page-banner__content container t-center c-white flex flex-col py-16 md:pl-10 w-full xl:py-24">
       <div class="z-20 backdrop-blur-sm backdrop-brightness-75 rounded-md p-2 py-4">
         <h1 class="headline text-5xl sm:text-7xl ">Hi, I&rsquo;m Samuel Lau!</h1>
@@ -74,9 +74,9 @@ function displayBlogPosts() {
       </div>
     </div>
     <div class="cards-section w-full z-0 md:pt-20 p-10 md:p-0">
-      <div class="card card-left translate-x-12 md:translate-x-64 z-10 bg-cover border-2 border-white shadow-lg shadow-stone-500" style="background-image: url(<?= get_theme_file_uri('images/card-image/image-1.png') ?>)"></div>
-      <div class="card card-center z-20 bg-cover border-2 border-white shadow-lg shadow-stone-500" style="background-image: url(<?= get_theme_file_uri('images/card-image/image-3.png') ?>)"></div>
-      <div class="card card-right -translate-x-16 md:-translate-x-60 z-10 bg-cover border-2 border-white shadow-lg shadow-stone-500" style="background-image: url(<?= get_theme_file_uri('images/card-image/image-2.png') ?>)"></div>
+      <div class="card card-left translate-x-12 md:translate-x-64 z-10 bg-cover border-2 border-white shadow-lg shadow-stone-500" style="background-image: url(<?= get_theme_file_uri('images/card-image/image-1.webp') ?>)"></div>
+      <div class="card card-center z-20 bg-cover border-2 border-white shadow-lg shadow-stone-500" style="background-image: url(<?= get_theme_file_uri('images/card-image/image-3.webp') ?>)"></div>
+      <div class="card card-right -translate-x-16 md:-translate-x-60 z-10 bg-cover border-2 border-white shadow-lg shadow-stone-500" style="background-image: url(<?= get_theme_file_uri('images/card-image/image-2.webp') ?>)"></div>
     </div>
   </div>
 </section>
@@ -122,7 +122,7 @@ function displayBlogPosts() {
       <?php endforeach; ?>
     </div>
   </div>
-  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat z-0 opacity-30" style="background-image: url(<?php echo get_theme_file_uri('/images/services.png') ?>)"></div>
+  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat z-0 opacity-30" style="background-image: url(<?php echo get_theme_file_uri('/images/services.webp') ?>)"></div>
 </section>
 
 
