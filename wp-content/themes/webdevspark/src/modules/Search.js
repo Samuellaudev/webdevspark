@@ -122,7 +122,7 @@ class Search {
     return `
       <ul class="link-list min-list">
         ${ results.map(item => `
-          <li>
+          <li class='hover:cursor-pointer hover:text-primary-500'>
             <a href="${ item.permalink }">${ item.title }</a>
             ${ item.postType === 'post' ? `by ${ item.authorName }` : '' }
           </li>
@@ -130,50 +130,33 @@ class Search {
       </ul>
     `}
 
-  displayProfessors(professors) { 
-    return `
-      <ul class='professor-cards'>
-        ${ professors.map(professor => `
-          <li class="professor-card__list-item">
-            <a class="professor-card" href="${professor.permalink}">
-              <img class="professor-card__image" src="${professor.image}" alt="">
-              <span class="professor-card__name">${professor.title}</span>
-            </a>
-          </li>
-        `).join('') }
-      </ul>
-    `}
-
-  displayEvents(events) {
-    return `
-      ${ events.map(event => `
-        <div class="event-summary">
-          <a class="event-summary__date event-summary__date--beige t-center" href="${event.permalink}">
-            <span class="event-summary__month">${event.month}</span>
-            <span class="event-summary__day">${event.date}</span>
-          </a>
-          <div class="event-summary__content">
-            <h5 class="event-summary__title headline headline--tiny">
-              <a href="${event.permalink}">${event.title}</a>
-            </h5>
-            <p>
-              ${event.description}
-              <a href="${event.permalink}" class="nu gray">Read more</a>
-            </p>
+    displayProjects(projects) {
+      return `
+        ${ projects.map(project => `
+          <div class="project-summary">
+            <div class='project-summary__content p-2 -translate-x-2 -translate-y-2 border-2 border-transparent hover:border-black hover:translate-x-0.5 hover:translate-y-0.5 rounded-md duration-200'>
+              <h5 class="project-summary__title headline headline--small-plus pt-4 pb-0 px-0 text-black cursor-pointer">
+                <a href="${ project.permalink }" class="hover:text-primary-500 no-underline">${ project.title }</a>
+              </h5>
+              <p class="flex flex-col mt-0 pt-0">
+                ${ project.description }
+                <a href="${ project.permalink }" class="nu gray cursor-pointer">Read more</a>
+              </p>
+            </div>
           </div>
-        </div>
-      `)}
-    `
-  }
+        `).join('') }
+      `
+    }
+    
 
   async getResults() {
     const searchValue = this.searchField.value.trim();
-    const url =`${siteConfig.root_url}/wp-json/university/v1/search?term=${searchValue}`;
+    const url = `${ siteConfig.root_url }/wp-json/university/v1/search?term=${ searchValue }`;
 
     try {
       const response = await axios.get(url)
       const results = response.data
-      const { generalInfo, programs, professors, events } = results
+      const { generalInfo, languages, projects } = results
 
       this.resultsDiv.innerHTML = `
       <div class='row'>
@@ -182,16 +165,12 @@ class Search {
           ${ generalInfo.length ? this.displayResults(generalInfo) : '<p>No general information matches that search.</p>' }
         </div>
         <div class='one-third'>
-          <h2 class="search-overlay__section-title">Programs</h2>
-          ${ programs.length ? this.displayResults(programs) : '<p>No programs matches that search.</p>' }
+          <h2 class="search-overlay__section-title">Languages</h2>
+          ${ languages.length ? this.displayResults(languages) : '<p>No languages matches that search.</p>' }
         </div>
         <div class='one-third'>
-          <h2 class="search-overlay__section-title">Professors</h2>
-          ${ professors.length ? this.displayProfessors(professors) : '<p>No professors matches that search.</p>' }
-        </div>
-        <div class='one-third'>
-          <h2 class="search-overlay__section-title">Events</h2>
-          ${ events.length ? this.displayEvents(events) : '<p>No events matches that search.</p>' }
+          <h2 class="search-overlay__section-title">Projects</h2>
+          ${ projects.length ? this.displayProjects(projects) : '<p>No projects matches that search.</p>' }
         </div>
       </div>
     `;
