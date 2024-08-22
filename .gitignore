@@ -97,3 +97,6 @@ wp-content/wp-cache-config.php
 
 # Ignore PHPStorm project files
 .idea/
+
+# Files not to be ignored
+!README.md
