@@ -16,7 +16,7 @@
       <!-- mobile menu -->
       <span class="js-search-trigger site-header__search-trigger pt-1"><i class="fa fa-search" aria-hidden="true"></i></span>
       <div class="block sm:hidden">
-        <i class="site-header__menu-trigger fa fa-bars" aria-hidden="true"></i>
+        <i class="site-header__menu-trigger fa fa-bars mt-1" aria-hidden="true"></i>
       </div>
       <!-- desktop menu -->
       <div class="site-header__menu group">

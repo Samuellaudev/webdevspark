@@ -37,10 +37,11 @@
 
   &__icon {
     margin-right: 10px;
-    font-size: 1.8rem;
+    font-size: 1.8rem !important;
+    font-size: 1rem;
     color: $darkOrange;
     @include atMedium {
-      font-size: 2.5rem;
+      font-size: 2.5rem !important;
     }
   }
 
@@ -61,21 +62,20 @@
 
   &__close {
     position: absolute;
-    top: 13px;
+    top: 20px;
     right: 16px;
-    font-size: 2.1rem;
+    font-size: 1rem !important;
     cursor: pointer;
     transition: all 0.3s;
-    background-color: #fff;
     color: $darkOrange;
     line-height: 0.7;
     @include atSmall {
       top: 18px;
-      font-size: 2.1rem;
+      font-size: 2.1rem !important;
     }
     @include atMedium {
-      top: 26px;
-      font-size: 2.8rem;
+      top: 33px;
+      font-size: 2.8rem !important;
     }
   }
 
