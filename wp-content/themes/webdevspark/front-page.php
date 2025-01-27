@@ -64,12 +64,12 @@ function displayBlogPosts() {
 <section class="page-banner">
   <div class="container flex flex-col sm:flex-row bg-top md:bg-cover bg-no-repeat" style="background-image: url(<?php echo get_theme_file_uri('/images/hero-image.webp') ?>)">
     <div class="relative z-0 page-banner__content container t-center c-white flex flex-col py-16 md:pl-10 w-full xl:py-24">
-      <div class="z-20 backdrop-blur-sm backdrop-brightness-75 rounded-md p-2 py-4">
-        <h1 class="headline text-5xl sm:text-7xl ">Hi, I&rsquo;m Samuel Lau!</h1>
-        <h2 class="headline text-3xl sm:text-4xl py-7">WebDevSpark, a website primarily focused on topics related to React and WordPress.</h2>
-        <h3 class="headline text-xl sm:text-2xl">Explore the various projects I've completed.</h3>
+      <div class="revealOnScrollOnce z-20 backdrop-blur-sm backdrop-brightness-75 rounded-md p-2 py-4">
+        <h1 class="headline text-5xl sm:text-7xl ">WebDevSpark</h1>
+        <h2 class="headline text-3xl sm:text-4xl py-7">A website primarily focused on topics related to WordPress.</h2>
+        <h3 class="headline text-xl sm:text-2xl">Explore the various projects that have been completed.</h3>
         <div class='mt-10'>
-          <a href="<?php echo get_post_type_archive_link('project') ?>" class="btn btn--large py-2 px-4 bg-primary-500 hover:-translate-y-2 duration-200">My Projects</a>
+          <a href="<?php echo get_post_type_archive_link('project') ?>" class="btn btn--large py-2 px-4 bg-primary-500 hover:-translate-y-2 duration-200">Discover</a>
         </div>
       </div>
     </div>
@@ -77,7 +77,7 @@ function displayBlogPosts() {
 </section>
 
 <section class="full-width-split group bg-black text-white py-10">
-  <div class="full-width-split__one">
+  <div class="full-width-split__one revealOnScrollOnce">
     <div class="full-width-split__inner py-10 px-6 flex flex-col h-full border border-white rounded-md">
       <h2 class="headline headline--small-plus t-center mx-auto px-4 py-2 mt-2 mb-10 border-2 border-white rounded-md">Recent Projects</h2>
       <?php displayRecentProjects(); ?>
@@ -87,7 +87,7 @@ function displayBlogPosts() {
     </div>
   </div>
 
-  <div class="full-width-split__two">
+  <div class="full-width-split__two revealOnScrollOnce">
     <div class="full-width-split__inner py-10 px-6 flex flex-col h-full border border-white rounded-md">
       <h2 class="headline headline--small-plus t-center mx-auto px-4 py-2 mt-2 mb-10 border-2 border-white rounded-md">Latest Posts</h2>
       <?php displayBlogPosts(); ?>
@@ -103,7 +103,7 @@ function displayBlogPosts() {
     <h1 class="text-4xl font-semibold text-center text-white capitalize">Services</h1>
     <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-16 md:grid-cols-2 xl:grid-cols-3">
       <?php foreach ($items as $item) : ?>
-        <div class="flex flex-col items-center p-6 space-y-3 text-center bg-black rounded-xl">
+        <div class="revealOnScrollOnce flex flex-col items-center p-6 space-y-3 text-center bg-black rounded-xl">
           <span class="inline-block p-3 text-white bg-primary-500 rounded-full">
             <?php echo $item['icon'] ?>
           </span>
