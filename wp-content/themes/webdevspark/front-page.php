@@ -73,11 +73,6 @@ function displayBlogPosts() {
         </div>
       </div>
     </div>
-    <div class="cards-section w-full z-0 md:pt-20 p-10 md:p-0">
-      <div class="card card-left translate-x-12 md:translate-x-64 z-10 bg-cover border-2 border-white shadow-lg shadow-stone-500" style="background-image: url(<?= get_theme_file_uri('images/card-image/image-1.webp') ?>)"></div>
-      <div class="card card-center z-20 bg-cover border-2 border-white shadow-lg shadow-stone-500" style="background-image: url(<?= get_theme_file_uri('images/card-image/image-3.webp') ?>)"></div>
-      <div class="card card-right -translate-x-16 md:-translate-x-60 z-10 bg-cover border-2 border-white shadow-lg shadow-stone-500" style="background-image: url(<?= get_theme_file_uri('images/card-image/image-2.webp') ?>)"></div>
-    </div>
   </div>
 </section>
 

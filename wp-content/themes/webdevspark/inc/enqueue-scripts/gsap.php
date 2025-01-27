@@ -6,4 +6,4 @@ function enqueue_gsap_scripts() {
   wp_enqueue_script('custom-gsap', get_template_directory_uri() . '/src/custom-gsap.js', array('gsap', 'scroll-trigger'), false, true);
 }
 
-add_action('wp_enqueue_scripts', 'enqueue_gsap_scripts');
+// add_action('wp_enqueue_scripts', 'enqueue_gsap_scripts');
