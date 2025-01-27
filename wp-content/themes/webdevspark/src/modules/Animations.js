@@ -4,6 +4,7 @@
  */
 
 import { showWhenInView } from "./Animation/ShowWhenInView";
+import { MarqueeButton } from "./Animation/MarqueeButton";
 
 class Animations {
   /**
@@ -18,6 +19,7 @@ class Animations {
    */
   initializeAnimations() {
     showWhenInView(".revealOnScrollOnce", 0.3, "50px", "-50px", true);
+    MarqueeButton(".marquee-button", '/projects');
   }
 }
 

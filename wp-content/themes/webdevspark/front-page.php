@@ -68,9 +68,7 @@ function displayBlogPosts() {
         <h1 class="headline text-5xl sm:text-7xl ">WebDevSpark</h1>
         <h2 class="headline text-3xl sm:text-4xl py-7">A website primarily focused on topics related to WordPress.</h2>
         <h3 class="headline text-xl sm:text-2xl">Explore the various projects that have been completed.</h3>
-        <div class='mt-10'>
-          <a href="<?php echo get_post_type_archive_link('project') ?>" class="btn btn--large py-2 px-4 bg-primary-500 hover:-translate-y-2 duration-200">Discover</a>
-        </div>
+        <div class="marquee-button"></div>
       </div>
     </div>
   </div>

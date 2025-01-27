@@ -1,0 +1,25 @@
+.marquee-button {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  width: 9rem; /* w-36 */
+  height: 3rem; /* h-12 */
+  padding: 0.75rem 0.75rem; /* px-3 py-3 */
+  margin: 2rem auto;
+  border-radius: 1.5rem; /* rounded-3xl */
+  border: 2px solid white; /* border-2 border-white */
+  background-color: white; /* bg-white */
+  background: linear-gradient(to right, theme('colors.primary.300'), theme('colors.secondary.700')); /* bg-gradient-to-r */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; /* duration-200 */
+  
+  &:hover {
+    transform: translateY(-0.25rem); /* hover:-translate-y-1 */
+  }
+
+  /* Responsive */
+  @media (min-width: 768px) { /* md:w-44 */
+    width: 11rem;
+  }
+}
