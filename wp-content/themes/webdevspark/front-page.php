@@ -97,7 +97,7 @@ function displayBlogPosts() {
 </section>
 
 <section class="bg-neutral-900 relative">
-  <div class="container mx-auto px-6 py-28 z-10">
+  <div class="revealOnScrollOnce container mx-auto px-6 py-28 z-10">
     <h1 class="text-4xl font-semibold text-center text-white capitalize">Services</h1>
     <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-16 md:grid-cols-2 xl:grid-cols-3">
       <?php foreach ($items as $item) : ?>

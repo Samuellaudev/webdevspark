@@ -1,11 +1,11 @@
 import { animate, inView } from "https://cdn.jsdelivr.net/npm/motion@12.0.6/+esm";
 
-export function showWhenInView(selector, delay = 0, initialY = '30px', margin = '-100px', once = true) {
-  inView(selector, (element) => {
+export function showWhenInView(selector, delay = 0, initialY = '30px', margin = '-100px') {
+  inView(selector, (element, enterInfo) => {
     element.style.opacity = 0;
     element.style.transform = `translateY(${ initialY })`;
 
-    animate(
+    const animation = animate(
       element,
       { opacity: 1, y: [100, 0] },
       {
@@ -14,11 +14,5 @@ export function showWhenInView(selector, delay = 0, initialY = '30px', margin = 
         easing: [0.17, 0.55, 0.55, 1],
       }
     );
-
-    if (once) {
-      return (leaveInfo) => animation.stop()
-    } else {
-      return () => animate(element, { opacity: 0, y: 100 })
-    }
   }, { margin });
 }

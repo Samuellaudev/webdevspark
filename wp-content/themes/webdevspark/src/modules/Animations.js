@@ -18,7 +18,7 @@ class Animations {
    * Initialize all animations on the page.
    */
   initializeAnimations() {
-    showWhenInView(".revealOnScrollOnce", 0.3, "50px", "-50px", true);
+    showWhenInView(".revealOnScrollOnce", 0.3, "50px", "-50px");
     MarqueeButton(".marquee-button", '/projects');
   }
 }
