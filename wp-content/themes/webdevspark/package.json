@@ -20,6 +20,7 @@
     "@glidejs/glide": "^3.4.1",
     "@wordpress/scripts": "^27.9.0",
     "axios": "^1.6.8",
+    "motion": "^12.0.6",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {

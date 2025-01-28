@@ -1,4 +1,4 @@
-import { animate } from "https://cdn.jsdelivr.net/npm/motion@12.0.6/+esm";
+import { animate } from "motion";
 
 // Marquee text content
 function MarqueeText() {

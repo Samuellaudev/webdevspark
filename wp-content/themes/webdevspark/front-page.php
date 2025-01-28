@@ -66,7 +66,7 @@ function displayBlogPosts() {
     <div class="relative z-0 page-banner__content container t-center c-white flex flex-col py-16 md:pl-10 w-full xl:py-24">
       <div class="revealOnScrollOnce z-20 backdrop-blur-sm backdrop-brightness-75 rounded-md p-2 py-4">
         <h1 class="headline text-5xl sm:text-7xl ">WebDevSpark</h1>
-        <h2 class="headline text-3xl sm:text-4xl py-7">A website primarily focused on topics related to WordPress.</h2>
+        <h2 class="headline text-3xl sm:text-4xl py-7">A website primarily focused on topics related to web development.</h2>
         <h3 class="headline text-xl sm:text-2xl">Explore the various projects that have been completed.</h3>
         <div class="marquee-button"></div>
       </div>

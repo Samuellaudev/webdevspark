@@ -1,4 +1,4 @@
-import { animate, inView } from "https://cdn.jsdelivr.net/npm/motion@12.0.6/+esm";
+import { animate, inView } from "motion";
 
 export function showWhenInView(selector, delay = 0, initialY = '30px', margin = '-100px') {
   inView(selector, (element, enterInfo) => {
